@@ -1,6 +1,6 @@
 const express = require('express');
 const {Comments} = require('./comments');
-const { Brands } = require('./routes/brands');
+const { Brands } = require('./brands');
 
 
 const Articles = express.Router();
@@ -31,7 +31,7 @@ Articles.put('/:article_id', (req, res) => {
 
 // DELETE http://localhost:3001/articles/:article_id
 Articles.delete('/:article_id', (req, res) => {
-  res.json({msg: `delete article by id ${req.article_id`});
+  res.json({msg: `delete article by id ${req.article_id}`});
 });
 
 module.exports = {
