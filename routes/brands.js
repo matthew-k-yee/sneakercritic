@@ -14,17 +14,17 @@ Brands.post('/', (req, res) => {
 
 // GET http://localhost:3001/brands/:brand_id
 Brands.get('/:brand_id', (req, res) => {
-  res.json({msg: `get brand by id ${req.brand_id}`});
+  res.json({msg: `get brand by id ${req.params.brand_id}`});
 });
 
 // PUT http://localhost:3001/brands/:brand_id
 Brands.put('/:brand_id', (req, res) => {
-  res.json({msg: `update brand by id ${req.brand_id}`});
+  res.json({msg: `update brand by id ${req.params.brand_id}`});
 });
 
 // DELETE http://localhost:3001/brands/:brand_id
 Brands.delete('/:brand_id', (req, res) => {
-  res.json({msg: `delete brand by id ${req.brand_id}`});
+  res.json({msg: `delete brand by id ${req.params.brand_id}`});
 });
 
 module.exports = {

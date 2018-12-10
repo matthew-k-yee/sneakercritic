@@ -21,17 +21,17 @@ Articles.post('/', (req, res) => {
 
 // GET http://localhost:3001/articles/:article_id
 Articles.get('/:article_id', (req, res) => {
-  res.json({msg: `get article by id ${req.article_id}`});
+  res.json({msg: `get article by id ${req.params.article_id}`});
 });
 
 // PUT http://localhost:3001/articles/:article_id
 Articles.put('/:article_id', (req, res) => {
-  res.json({msg: `update article by id ${req.article_id}`});
+  res.json({msg: `update article by id ${req.params.article_id}`});
 });
 
 // DELETE http://localhost:3001/articles/:article_id
 Articles.delete('/:article_id', (req, res) => {
-  res.json({msg: `delete article by id ${req.article_id}`});
+  res.json({msg: `delete article by id ${req.params.article_id}`});
 });
 
 module.exports = {

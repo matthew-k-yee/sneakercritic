@@ -14,17 +14,17 @@ Users.post('/', (req, res) => {
 
 // GET http://localhost:3001/users/:user_id
 Users.get('/:user_id', (req, res) => {
-  res.json({msg: `get user by id ${req.user_id}`});
+  res.json({msg: `get user by id ${req.params.user_id}`});
 });
 
 // PUT http://localhost:3001/users/:user_id
 Users.put('/:user_id', (req, res) => {
-  res.json({msg: `update user by id ${req.user_id}`});
+  res.json({msg: `update user by id ${req.params.user_id}`});
 });
 
 // DELETE http://localhost:3001/users/:user_id
 Users.delete('/:user_id', (req, res) => {
-  res.json({msg: `delete user by id ${req.user_id}`});
+  res.json({msg: `delete user by id ${req.params.user_id}`});
 });
 
 module.exports = {

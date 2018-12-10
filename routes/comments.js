@@ -14,17 +14,17 @@ Comments.post('/', (req, res) => {
 
 // GET http://localhost:3001/comments/:comment_id
 Comments.get('/:comment_id', (req, res) => {
-  res.json({msg: `get comment by id ${req.comment_id}`});
+  res.json({msg: `get comment by id ${req.params.comment_id}`});
 });
 
 // PUT http://localhost:3001/comments/:comment_id
 Comments.put('/:comment_id', (req, res) => {
-  res.json({msg: `update comment by id ${req.comment_id}`});
+  res.json({msg: `update comment by id ${req.params.comment_id}`});
 });
 
 // DELETE http://localhost:3001/comments/:comment_id
 Comments.delete('/:comment_id', (req, res) => {
-  res.json({msg: `delete comment by id ${req.comment_id}`});
+  res.json({msg: `delete comment by id ${req.params.comment_id}`});
 });
 
 module.exports = {
