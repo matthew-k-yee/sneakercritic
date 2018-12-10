@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
+const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize.define({
+const sequelize = new Sequelize({
   database: 'sneakercritics_db',
   dialect: 'postgres',
   operatorsAliases: false,
