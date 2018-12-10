@@ -1,4 +1,5 @@
-const { sequelize } = require('./models');
+const { sequelize, Article, Comment, User, Sneaker, Brand, CArticle, CComment,
+  CUser, CSneaker, CBrand } = require('./models');
 
 async function seed() {
   try {
