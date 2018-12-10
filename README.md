@@ -14,7 +14,7 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - https://www.metacritic.com
 
 ## list of dependencies / technologies front-end
-* [html5] --
+* [html5]:(https://www.w3.org/TR/html/) --
 * [css3] -- Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML
 * [react.js] --
 * [axios] --
@@ -64,8 +64,8 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - http://localhost:3001/users/:user_id — user profile list articles you commented on, scores you gave the shoe in the article
 -
 
-    [html5]:<https://www.w3.org/TR/html/>
-    [css3]:https://www.w3.org/Style/CSS/>
+    [html5]:
+    [css3]:https://www.w3.org/Style/CSS/
     [react.js]:[https://reactjs.org]
     [axios]: <https://www.axios.com>
     [node.js]: <http://nodejs.org>
