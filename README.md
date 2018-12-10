@@ -1,36 +1,40 @@
-** app description **
+# Readme.md
+
+## app description
 the app is a review aggregator for sneakers using users and reviewers scores.
 The score represent how easy it is to match the sneakers look with multiple popular styles
 
-** URL section **
-- Github repo link — http
+## URL section
+* [Github repo link]
 - Deployed app link — http
 
-** model after sites like **
+## inspired by sites like
 - https://opencritic.com
 - https://www.finishline.com
 - https://www.metacritic.com
 
-** list of dependencies / technologies front-end**
-- html5
-- css3
-- react.js
-- axios
-- node.js
+## list of dependencies / technologies front-end
+* [html5] --
+* [css3] -- Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML
+* [react.js] --
+* [axios] --
+* [node.js] --
 
-** list of dependencies / technologies back-end**
-- sequelize.js
-- nodemon
-- pg/pg-hstore
-- morgan
-- body-parser
-- cors
-- express.js
-- passport/passport-jwt
-- git/github
-- PostgreSQL database
+## list of dependencies / technologies back-end
+* [sequelize.js] --
+* [nodemon] -- automatically restarting the node application when file changes in the directory are detected.
+* [pg] -- Non-blocking PostgreSQL client for Node.js.
+* [pg-hstore] -- A node package for serializing and deserializing JSON data to hstore format.
+* [morgan] -- HTTP request logger middleware for node.js.
+* [body-parser] --
+* [cors] --
+* [express.js] --
+* [passport] --
+* [passport-jwt] --
+* [git/github] --
+* [PostgreSQL] -- database dialect
 
-** npm scripts back-end **
+## npm scripts back-end
 - dev — nodemon server.js
 - start — node server.js
 - seed — node seed.js
@@ -39,7 +43,7 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - setup — node resetDb.js && node testConDb.js && node seed.js
 - debug — node —inspect-brk server.js
 
-** Routes **
+## Routes
 - http://localhost:3001  — Welcome Page
 - http://localhost:3001/brands — Show brands index / add brand
 - http://localhost:3001/brands/:brand_id  — Show all brand shoes
@@ -58,3 +62,22 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - http://localhost:3001/login  — login register
 - http://localhost:3001/register — register users
 - http://localhost:3001/users/:user_id — user profile list articles you commented on, scores you gave the shoe in the article
+-
+
+    [html5]: <https://www.w3.org/TR/html/>
+    [css3]: <https://www.w3.org/Style/CSS/>
+    [react.js]: <https://reactjs.org>
+    [axios]: <https://www.axios.com>
+    [node.js]: <http://nodejs.org>
+    [sequelize.js]: <http://docs.sequelizejs.com>
+    [nodemon]: <https://www.npmjs.com/package/nodemon>
+    [pg]: <https://www.npmjs.com/package/pg>
+    [pg-hstore]: <https://www.npmjs.com/package/pg-hstore>
+    [morgan]: <https://www.npmjs.com/package/morgan>
+    [body-parser]: <https://www.npmjs.com/package/body-parser>
+    [cors]: <https://www.npmjs.com/package/cors>
+    [express.js]: <http://expressjs.com>
+    [passport]: <https://www.npmjs.com/package/passport>
+    [passport-jwt]: <https://www.npmjs.com/package/passport-jwt>
+    [git/github]: <https://github.com>
+    [Github repo link]: <https://github.com/matthew-k-yee/sneakercritic>
