@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-
 import './App.css';
 import axios from 'axios';
 import BrandsList from './components/Brands/List';
+const BASE_URL = 'http://localhost:3001';
 
-const BASE_URL = 'http://localhost:3001/';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       view: 'welcome',
-      brands: []
+      brands: [],
     }
   }
 
   async componentDidMount() {
+    const brands = await this.getBrands();
     this.setState({
-      brands: await this.getBrands()
+      brands: brands,
     })
   }
 
@@ -32,12 +32,11 @@ class App extends Component {
       case 'brands':  return ("Brands!");
       default:        return ("404");
     }
-
+  }
 
   render() {
     return (
       <div className="App">
-        <img src={`${BASE_URL}/favicon.ico`} />
         {this.getView()}
         <button onClick={() => {this.setState({view: 'index'})}}>Click me!</button>
         <BrandsList brands={this.state.brands} />
