@@ -8,9 +8,9 @@ const { Users } = require('./routes/users');
 
 
 const app = express();
-app.use(logger('dev'));
 app.use(cors());
 app.use(bodyParser.json());
+app.use(logger('dev'));
 
 app.use('/articles', Articles);
 app.use('/brands', BrandsRouter);
@@ -21,9 +21,7 @@ const PORT = process.env.PORT || 3001;
 
 
 
-app.use(cors);
-app.use(bodyParser.json());
-app.use(logger('dev'));
+
 
 app.get('/', (req, res) => {
   res.json({msg: 'you have reached the home of the sneakercritic server, Hello :)'})

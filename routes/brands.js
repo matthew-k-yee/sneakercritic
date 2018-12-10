@@ -5,7 +5,7 @@ const { Brand, CBrand } = require('../models');
 const BrandsRouter = express.Router();
 
 // http://localhost:3001/brands
-BrandsRouter.get('', async (req, res) => {
+BrandsRouter.get('/', async (req, res) => {
   try {
     const brands = await Brand.findAll();
     res.json({brands});
@@ -16,7 +16,7 @@ BrandsRouter.get('', async (req, res) => {
 });
 
 // POST http://localhost:3001/brands/
-BrandsRouter.post('', async (req, res) => {
+BrandsRouter.post('/', async (req, res) => {
   try {
     const brands = await Brand.create(req.body);
     res.json({brands});
@@ -43,15 +43,15 @@ BrandsRouter.put('/:brand_id', async (req, res) => {
     //res.json({msg: `update brand by id ${req.params.brand_id}`});
     const data = req.body;
     const brand = await Brand.findByPk(req.params.brand_id);
-    const res = await Brand.update({
-      name: data.brand_name || brand.brand_name,
+    const resp = await Brand.update({
+      brand_name: data.brand_name || brand.brand_name,
     },
     {
       where: {
         id: req.params.brand_id,
       }
     });
-    res.json({msg: `updated ${res}`});
+    res.json(data);
   }
   catch(evt) {
     res.status(500).json({msg: evt.message})
