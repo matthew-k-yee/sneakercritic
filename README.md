@@ -5,7 +5,7 @@ the app is a review aggregator for sneakers using users and reviewers scores.
 The score represent how easy it is to match the sneakers look with multiple popular styles
 
 ## URL section
-* [Github repo link]
+* [Github repo link](https://github.com/matthew-k-yee/sneakercritic)
 - Deployed app link — http
 
 ## inspired by sites like
@@ -14,25 +14,25 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - https://www.metacritic.com
 
 ## list of dependencies / technologies front-end
-* [html5]:(https://www.w3.org/TR/html/) --
-* [css3] -- Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML
-* [react.js] --
-* [axios] --
-* [node.js] --
+* [html5](https://www.w3.org/TR/html/) --
+* [css3](https://www.w3.org/Style/CSS/) -- Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML
+* [react.js](https://reactjs.org) --
+* [axios](https://www.axios.com) --
+* [node.js](http://nodejs.org) --
 
 ## list of dependencies / technologies back-end
-* [sequelize.js] --
-* [nodemon] -- automatically restarting the node application when file changes in the directory are detected.
-* [pg] -- Non-blocking PostgreSQL client for Node.js.
-* [pg-hstore] -- A node package for serializing and deserializing JSON data to hstore format.
-* [morgan] -- HTTP request logger middleware for node.js.
-* [body-parser] --
-* [cors] --
-* [express.js] --
-* [passport] --
-* [passport-jwt] --
-* [git/github] --
-* [PostgreSQL] -- database dialect
+* [sequelize.js](http://docs.sequelizejs.com) --
+* [nodemon](https://www.npmjs.com/package/nodemon) -- automatically restarting the node application when file changes in the directory are detected.
+* [pg](https://www.npmjs.com/package/pg) -- Non-blocking PostgreSQL client for Node.js.
+* [pg-hstore](https://www.npmjs.com/package/pg-hstore) -- A node package for serializing and deserializing JSON data to hstore format.
+* [morgan](https://www.npmjs.com/package/morgan) -- HTTP request logger middleware for node.js.
+* [body-parser](https://www.npmjs.com/package/body-parser) --
+* [cors](https://www.npmjs.com/package/cors) --
+* [express.js](http://expressjs.com) --
+* [passport](https://www.npmjs.com/package/passport) --
+* [passport-jwt](https://www.npmjs.com/package/passport-jwt) --
+* [git/github](https://github.com) --
+* [PostgreSQL](https://www.postgresql.org) -- database dialect
 
 ## npm scripts back-end
 - dev — nodemon server.js
@@ -62,22 +62,3 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - http://localhost:3001/login  — login register
 - http://localhost:3001/register — register users
 - http://localhost:3001/users/:user_id — user profile list articles you commented on, scores you gave the shoe in the article
--
-
-    [html5]:
-    [css3]:https://www.w3.org/Style/CSS/
-    [react.js]:[https://reactjs.org]
-    [axios]: <https://www.axios.com>
-    [node.js]: <http://nodejs.org>
-    [sequelize.js]: <http://docs.sequelizejs.com>
-    [nodemon]: <https://www.npmjs.com/package/nodemon>
-    [pg]: <https://www.npmjs.com/package/pg>
-    [pg-hstore]: <https://www.npmjs.com/package/pg-hstore>
-    [morgan]: <https://www.npmjs.com/package/morgan>
-    [body-parser]: <https://www.npmjs.com/package/body-parser>
-    [cors]: <https://www.npmjs.com/package/cors>
-    [express.js]: <http://expressjs.com>
-    [passport]: <https://www.npmjs.com/package/passport>
-    [passport-jwt]: <https://www.npmjs.com/package/passport-jwt>
-    [git/github]: <https://github.com>
-    [Github repo link]: <https://github.com/matthew-k-yee/sneakercritic>
