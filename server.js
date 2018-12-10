@@ -3,13 +3,17 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const { Articles } = require('./routes/articles');
-const { Brands } = require('./routes/brands');
+const { BrandsRouter } = require('./routes/brands');
 const { Users } = require('./routes/users');
 
 
 const app = express();
+app.use(logger('dev'));
+app.use(cors());
+app.use(bodyParser.json());
+
 app.use('/articles', Articles);
-app.use('/brands', Brands);
+app.use('/brands', BrandsRouter);
 app.use('/users', Users);
 
 
