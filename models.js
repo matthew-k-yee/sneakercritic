@@ -16,7 +16,7 @@ const Article = sequelize.define('article', {
   users_score: Sequelize.INTEGER
 });
 class CArticle{
-  constructor(title, site_score, users_score, sneaker_id = null) {
+  constructor(title, site_score, users_score, sneakers_id = null) {
     this.title = title;
     this.site_score = site_score;
     this.users_score = users_score;
