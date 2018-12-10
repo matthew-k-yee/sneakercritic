@@ -1,11 +1,11 @@
 const express = require('express');
 const {Comments} = require('./comments');
-const { Brands } = require('./brands');
+const { BrandsRouter } = require('./brands');
 
 
 const Articles = express.Router();
 Articles.use('/comments', Comments);
-Articles.use('/brands', Brands);
+Articles.use('/brands', BrandsRouter);
 
 // GET http://localhost:3001/articles/
 Articles.get('/', (req, res) => {
