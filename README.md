@@ -64,9 +64,9 @@ The score represent how easy it is to match the sneakers look with multiple popu
 - http://localhost:3001/users/:user_id — user profile list articles you commented on, scores you gave the shoe in the article
 -
 
-    [html5]: <https://www.w3.org/TR/html/>
-    [css3]: <https://www.w3.org/Style/CSS/>
-    [react.js]: <https://reactjs.org>
+    [html5]:<https://www.w3.org/TR/html/>
+    [css3]:https://www.w3.org/Style/CSS/>
+    [react.js]:[https://reactjs.org]
     [axios]: <https://www.axios.com>
     [node.js]: <http://nodejs.org>
     [sequelize.js]: <http://docs.sequelizejs.com>
