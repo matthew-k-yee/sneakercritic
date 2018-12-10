@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
+
 import './App.css';
 import axios from 'axios';
 import BrandsList from './components/Brands/List';
-const BASE_URL = 'http://localhost:3001';
 
-
+const BASE_URL = 'http://localhost:3001/';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class App extends Component {
       case 'brands':  return ("Brands!");
       default:        return ("404");
     }
-  }
+
 
   render() {
     return (

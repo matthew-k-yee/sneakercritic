@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const { Articles } = require('./routes/articles');
+const { ArticlesRouter } = require('./routes/articles');
 const { BrandsRouter } = require('./routes/brands');
+const { CommentsRouter } = require('./routes/comments');
 const { Users } = require('./routes/users');
 
 
@@ -12,8 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.use('/articles', Articles);
+app.use('/articles', ArticlesRouter);
 app.use('/brands', BrandsRouter);
+app.use('/comments', CommentsRouter);
 app.use('/users', Users);
 
 
