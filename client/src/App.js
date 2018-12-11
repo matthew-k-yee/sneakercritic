@@ -93,7 +93,7 @@ class App extends Component {
         Authorization: this.state.loginRegCrit.token,
       }
     });
-    console.log(resp.data);
+    console.log('this is get profile ', resp.data);
   }
 
   onSubmitReg = async (evt) => {
@@ -115,7 +115,7 @@ class App extends Component {
             <Route exact path='/articles/:id' render={(props) => <Article {...props} />} />
             <Route exact path='/articles' render={(props) => <Article {...props}/>} />
             <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} loginRegCrit={this.state.loginRegCrit}/>} />
-            <Route exact path='/profile' render={(props) => <Profile {...props} />} />
+            <Route exact path='/profile' render={(props) => <Profile {...props} />} loginRegCrit={this.state.loginRegCrit}/>
             <Route
               exact path={'/register'}
               render={
