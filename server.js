@@ -6,6 +6,7 @@ const { ArticlesRouter } = require('./routes/articles');
 const { BrandsRouter } = require('./routes/brands');
 const { CommentsRouter } = require('./routes/comments');
 const { UsersRouter } = require('./routes/users');
+const { SneakersRouter } = require('./routes/sneakers')
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use('/articles', ArticlesRouter);
 app.use('/brands', BrandsRouter);
 app.use('/comments', CommentsRouter);
 app.use('/users', UsersRouter);
+app.use('/sneakers', SneakersRouter);
 
 
 const PORT = process.env.PORT || 3001;
