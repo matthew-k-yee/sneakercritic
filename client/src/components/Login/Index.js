@@ -5,7 +5,7 @@ export default function Login(props) {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm onChange={props.onChange}/>
+      <LoginForm onChange={props.onChange} onSubmit={props.onSubmit} {...props} />
     </div>
   )
 }

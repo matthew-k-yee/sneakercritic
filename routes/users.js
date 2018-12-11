@@ -4,7 +4,6 @@ const { sign, passport } = require('../auth');
 const { User } = require('../models');
 
 
-
 const UsersRouter = express.Router();
 
 
@@ -33,15 +32,17 @@ UsersRouter.post('/', async (req, res) => {
 //   res.json({msg: `get user by id ${req.params.user_id}`});
 // });
 
-UsersRouter.get('/login', async (req, res) => {
+UsersRouter.post('/login', async (req, res) => {
   try {
+    console.log(req.body);
     const {user_name, password} = req.body;
-    const user = await User.find({where: {user_name}});
+    const user = await User.findOne({where: {user_name}});
     const valid =  await bcrypt.compare(password, user.password);
+
     if (valid) {
       const { id, user_name, first_name } = user;
       const token = sign({user_name, first_name, id});
-      res.json({token});
+      res.json({token,valid});
     }
     else {
       throw Error('Invalid username or password');

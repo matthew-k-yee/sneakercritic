@@ -5,7 +5,7 @@ export default function Register(props) {
   return (
     <div>
       <h1>Register</h1>
-      <RegisterForm onChange={props.onChange}/>
+      <RegisterForm onChange={props.onChange} onSubmit={props.onSubmit} {...props}/>
     </div>
   )
 }
