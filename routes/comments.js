@@ -5,10 +5,11 @@ const CommentsRouter = express.Router();
 
 // http://localhost:3001/comments
 CommentsRouter.get('/', async (req, res) => {
-  try{
+  try {
     const comment = await Comment.findAll();
     res.json({ comment })
-  } catch(evt) {
+  }
+  catch(evt) {
     res.status(500).json({
       msg: evt.message
     });

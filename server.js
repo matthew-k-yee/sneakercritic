@@ -20,12 +20,7 @@ app.use('/comments', CommentsRouter);
 app.use('/users', UsersRouter);
 app.use('/sneakers', SneakersRouter);
 
-
 const PORT = process.env.PORT || 3001;
-
-
-
-
 
 app.get('/', (req, res) => {
   res.json({msg: 'you have reached the home of the sneakercritic server, Hello :)'})
