@@ -56,6 +56,14 @@ class App extends Component {
   onLogin = async (userData) => {
     console.log('this is the userData for login', userData);
     const currentUsers =  await axios.post(`${BASE_URL}/users/login`, userData);
+    this.setState(prevState => {
+      return {
+        loginRegCrit: {
+          ...prevState.loginRegCrit,
+          password: '',
+          token: currentUsers.data.token,
+        }
+      } });
     console.log(currentUsers.data);
   }
 
