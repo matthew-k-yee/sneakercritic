@@ -13,9 +13,9 @@ async function seed() {
 
     const sneaker = await Sneaker.bulkCreate([
       {
-        name: 'Nike Air Max 97',
+        name: 'Air Jordan 11 “Bred” ',
         type: 'low-top',
-        num_colors: 3,
+        num_colors: 1,
         product_detail: 'Fulllength Air Sole unit offers extreme comfort',
         description: 'With more than 20 years under its belt, the Air Max 97 is back and better than ever. Experience the ultimate ride with the Men\'s Nike Air Max 97 QS Casual Shoes.',
         brand_id: 1,
@@ -80,25 +80,29 @@ async function seed() {
 
     const article = await Article.bulkCreate([
       {
-        title: 'The Nike Air Max 97 Appears In Yet Another Gold And Red Colorway',
-        sneaker_id: 4,
+        title: 'Air Jordan 11 “Bred” Releasing During Holiday 2019',
+        text: 'Now, it is being reported that the Chicago Bulls-friendly Bred variety will be following in its predecessors place with an official Holiday, 2019 drop. While it is not confirmed, it is likely that the 2019 pairs will come dressed in the new remastered construction that boasts a higher cut patent leather mudguard more resemblant of the original 1995 pairs and the number “45” comes emblazoned on its heel as opposed to the customary “23” hit. With no concrete release date at the moment or actual looks, there will be plenty more information out of the Jordan 11 “Bred” camp over the next year.',
+        sneaker_id: 1,
         site_score: 3,
         users_score: 1
       },
       {
         title: 'Official Images Of The adidas Yeezy Boost 350 v2 “Static',
+        text: '',
         sneaker_id: 2,
         site_score: 1,
         users_score: 2
       },
       {
         title: 'Another OG Colorway Of The Nike Air Max 95 Is Coming',
+        text: '',
         sneaker_id: 3,
         site_score: 3,
         users_score: 4
       },
       {
         title: 'Air Jordan 12 Releasing During Holiday 2019',
+        text: '',
         sneaker_id: 4,
         site_score: 5,
         users_score: 3
