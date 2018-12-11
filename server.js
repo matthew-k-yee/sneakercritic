@@ -5,7 +5,7 @@ const logger = require('morgan');
 const { ArticlesRouter } = require('./routes/articles');
 const { BrandsRouter } = require('./routes/brands');
 const { CommentsRouter } = require('./routes/comments');
-const { Users } = require('./routes/users');
+const { UsersRouter } = require('./routes/users');
 
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use('/articles', ArticlesRouter);
 app.use('/brands', BrandsRouter);
 app.use('/comments', CommentsRouter);
-app.use('/users', Users);
+app.use('/users', UsersRouter);
 
 
 const PORT = process.env.PORT || 3001;
