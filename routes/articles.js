@@ -2,7 +2,7 @@ const express = require('express');
 const {CommentsRouter} = require('./comments');
 const { BrandsRouter } = require('./brands');
 const { SneakersRouter } = require('./sneakers')
-const {Article, CArticle } = require('../models');
+const {Article } = require('../models');
 
 
 const ArticlesRouter = express.Router();
