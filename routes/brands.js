@@ -1,5 +1,5 @@
 const express = require('express');
-const { Brand, CBrand } = require('../models');
+const { Brand } = require('../models');
 
 
 const BrandsRouter = express.Router();
@@ -36,7 +36,7 @@ BrandsRouter.get('/:brand_id', async (req, res) => {
     res.status(500).json({msg: evt.message})
   }
 });
-
+//
 // PUT http://localhost:3001/brands/:brand_id
 BrandsRouter.put('/:brand_id', async (req, res) => {
   try {

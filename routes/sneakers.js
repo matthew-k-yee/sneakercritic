@@ -1,5 +1,5 @@
 const express = require('express');
-const { Sneaker, CSneaker } = require('../models')
+const { Sneaker } = require('../models')
 const SneakersRouter = express.Router();
 
 // http://localhost:3001/sneakers
