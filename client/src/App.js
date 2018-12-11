@@ -24,6 +24,7 @@ class App extends Component {
         first_name: '',
         last_name: '',
         token: '',
+        comments: [],
       },
     }
   }
