@@ -39,26 +39,26 @@ CommentsRouter.get('/:comment_id', async (req, res) => {
 });
 
 // PUT http://localhost:3001/comments/:comment_id
-// CommentsRouter.put('/:comment_id', async (req, res) => {
-//   // res.json({msg: `update comment by id ${req.params.comment_id}`});
-//   try{
-//     const data = req.body;
-//     const comment = await Comment.findByPk(req.params.comment_id);
-//     const resp = await Comment.update({
-//       title: data.title || comment.title,
-//     },
-//     {
-//       where: {
-//         id: req.params.comment_id,
-//       }
-//     });
-//     res.json(data);
-//   } catch(evt) {
-//     res.status(500).json({
-//       msg: evt.message
-//     })
-//   }
-// });
+CommentsRouter.put('/:comment_id', async (req, res) => {
+  // res.json({msg: `update comment by id ${req.params.comment_id}`});
+  try{
+    const data = req.body;
+    const comment = await Comment.findByPk(req.params.comment_id);
+    const resp = await Comment.update({
+      title: data.title || comment.title,
+    },
+    {
+      where: {
+        id: req.params.comment_id,
+      }
+    });
+    console.log(data)
+    res.json(data);
+  }
+  catch(evt) {
+    res.status(500).json({msg: evt.message})
+  }
+});
 
 // DELETE http://localhost:3001/comments/:comment_id
 CommentsRouter.delete('/:comment_id', async (req, res) => {
