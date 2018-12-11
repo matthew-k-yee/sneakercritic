@@ -14,6 +14,7 @@ const sequelize = new Sequelize({
 
 const Article = sequelize.define('article', {
   title: Sequelize.STRING,
+  text: Sequelize.TEXT,
   sneaker_id: Sequelize.INTEGER,
   site_score: Sequelize.INTEGER,
   users_score: Sequelize.INTEGER
@@ -83,4 +84,3 @@ const Sneaker = sequelize.define('sneaker', {
     Sneaker,
     Brand,
   };
-
