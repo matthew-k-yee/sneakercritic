@@ -47,40 +47,40 @@ const Sneaker = sequelize.define('sneaker', {
   users_score: Sequelize.INTEGER
 });
 
-  const Brand = sequelize.define('brand', {
-    brand_name: Sequelize.STRING
-  });
+const Brand = sequelize.define('brand', {
+  brand_name: Sequelize.STRING
+});
 
 
-  Article.hasMany(Comment);
-  Comment.belongsTo(Article);
+Article.hasMany(Comment);
+Comment.belongsTo(Article);
 
-  Comment.belongsTo(User);
-  User.hasMany(Comment)
+Comment.belongsTo(User);
+User.hasMany(Comment)
 
-  Sneaker.belongsTo(Brand);
-  Brand.hasMany(Sneaker);
+Sneaker.belongsTo(Brand);
+Brand.hasMany(Sneaker);
 
-  Article.belongsTo(Sneaker);
-  // Auth
-  User.beforeCreate( async (user, options) => {
+Article.belongsTo(Sneaker);
+// Auth
+User.beforeCreate( async (user, options) => {
+  const hashedPass = await bcrypt.hash(user.password, THE_SECRET);
+  user.password = hashedPass;
+  return user;
+});
+
+User.beforeBulkCreate( async (users, options) => {
+  for (user of users) {
     const hashedPass = await bcrypt.hash(user.password, THE_SECRET);
     user.password = hashedPass;
-    return user;
-  });
+  }
+});
 
-  User.beforeBulkCreate( async (users, options) => {
-    for (user of users) {
-      const hashedPass = await bcrypt.hash(user.password, THE_SECRET);
-      user.password = hashedPass;
-    }
-  });
-
-  module.exports = {
-    sequelize,
-    Article,
-    Comment,
-    User,
-    Sneaker,
-    Brand,
-  };
+module.exports = {
+  sequelize,
+  Article,
+  Comment,
+  User,
+  Sneaker,
+  Brand,
+};

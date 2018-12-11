@@ -47,63 +47,73 @@ UsersRouter.post('/login', async (req, res) => {
     else {
       throw Error('Invalid username or password');
     }
-
   }
   catch(evt) {
     res.status(401).json(evt.message);
   }
 });
 
-UsersRouter.get('/profile', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  try {
-    res.json({user: req.user});
-
-
+UsersRouter.get('/profile', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
+    try {
+      res.json({user: req.user});
+    }
+    catch(evt) {
+      res.status(401).json(evt.message);
+    }
   }
-  catch(evt) {
-    res.status(401).json(evt.message);
-  }
-});
+);
 
 // PUT http://localhost:3001/users/:user_id
-UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  //res.json({msg: `update user by id ${req.params.user_id}`});
-  try {
-    const data = req.body;
-    const user = await User.findByPk(req.params.user_id);
-    const resp = await User.update({
-      user_name: data.user_name || user.user_name,
-      password: data.password || user.password,
-      email: data.email || user.email,
-      first_name: data.first_name || user.first_name,
-      last_name: data.last_name || user.last_name,
-    },
-    {
-      where: {
-        id: req.params.user_id,
-      }
-    });
-    res.json(data);
+UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
+    //res.json({msg: `update user by id ${req.params.user_id}`});
+    try {
+      const data = req.body;
+      const user = await User.findByPk(req.params.user_id);
+      const resp = await User.update(
+        {
+          user_name: data.user_name || user.user_name,
+          password: data.password || user.password,
+          email: data.email || user.email,
+          first_name: data.first_name || user.first_name,
+          last_name: data.last_name || user.last_name,
+        },
+        {
+          where: {
+            id: req.params.user_id,
+          }
+        }
+      );
+      res.json(data);
+    }
+    catch(evt) {
+      res.status(500).json({msg: evt.message})
+    }
   }
-  catch(evt) {
-    res.status(500).json({msg: evt.message})
-  }
-});
+);
 
 // DELETE http://localhost:3001/users/:user_id
-UsersRouter.delete('/:user_id', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  try {
-    await User.destroy( {
-      where: {
-        id: req.params.user_id,
-      }
-    },{truncate: true});
-    res.json({msg: `delete user by id ${req.params.user_id}`});
+UsersRouter.delete('/:user_id', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
+    try {
+      await User.destroy(
+        {
+          where: {
+            id: req.params.user_id,
+          }
+        },
+        {
+          truncate: true
+        }
+      );
+      res.json({msg: `delete user by id ${req.params.user_id}`});
+    }
+    catch(evt) {
+      res.status(500).json({msg: evt.message})
+    }
   }
-  catch(evt) {
-    res.status(500).json({msg: evt.message})
-  }
-});
+);
 
 module.exports = {
   UsersRouter,
