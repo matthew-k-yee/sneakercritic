@@ -43,27 +43,26 @@ UsersRouter.get('/:user_id', async (req, res) => {
 });
 
 // PUT http://localhost:3001/users/:user_id
-// UsersRouter.put('/:user_id', async (req, res) => {
-//   // res.json({msg: `update user by id ${req.params.user_id}`});
-//   try{
-//     const data = req.body;
-//     const user = await User.findByPk(req.params.user_id);
-//     console.log(user)
-//     const resp = await User.update({
-//       user_name: data.user_name || user.user_name,
-//     },
-//     {
-//       where: {
-//         id: req.params.user_ud
-//       }
-//     });
-//     res.json(data)
-//   } catch(evt) {
-//     res.status(500).json({
-//       msg: evt.message
-//     });
-//   }
-// });
+UsersRouter.put('/:user_id', async (req, res) => {
+  // res.json({msg: `update user by id ${req.params.user_id}`});
+  try{
+    const data = req.body;
+    const user = await User.findByPk(req.params.user_id);
+    const resp = await User.update({
+      user_name: data.user_name || user.user_name,
+    },
+    {
+      where: {
+        id: req.params.user_id,
+      }
+    });
+    console.log(data)
+    res.json(data);
+  }
+  catch(evt) {
+    res.status(500).json({msg: evt.message})
+  }
+});
 
 // DELETE http://localhost:3001/users/:user_id
 UsersRouter.delete('/:user_id', async (req, res) => {
