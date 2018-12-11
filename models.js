@@ -1,4 +1,7 @@
 const {Sequelize} = require('sequelize');
+// Auth
+const bcrypt = require('bcrypt');
+const THE_SECRET = 5;
 
 const sequelize = new Sequelize({
   database: 'sneakercritics_db',
@@ -72,51 +75,63 @@ const Sneaker = sequelize.define('sneaker', {
 
 class CSneaker {
   constructor(name, type, num_colors, product_detail, description, brand_id,
-     site_score = null, users_score = null){
-    this.name = name;
-    this.type = type;
-    this.num_colors = num_colors;
-    this.product_detail = product_detail;
-    this.description = description;
-    this.brand_id = brand_id;
-    this.site_score = site_score;
-    this.users_score = users_score;
+    site_score = null, users_score = null){
+      this.name = name;
+      this.type = type;
+      this.num_colors = num_colors;
+      this.product_detail = product_detail;
+      this.description = description;
+      this.brand_id = brand_id;
+      this.site_score = site_score;
+      this.users_score = users_score;
+    }
   }
-}
 
-const Brand = sequelize.define('brand', {
-  brand_name: Sequelize.STRING
-});
+  const Brand = sequelize.define('brand', {
+    brand_name: Sequelize.STRING
+  });
 
-class CBrand{
-  constructor(brand_name) {
-    this.brand_name = brand_name;
+  class CBrand{
+    constructor(brand_name) {
+      this.brand_name = brand_name;
 
+    }
   }
-}
 
-Article.hasMany(Comment);
-Comment.belongsTo(Article);
+  Article.hasMany(Comment);
+  Comment.belongsTo(Article);
 
-Comment.belongsTo(User);
-User.hasMany(Comment)
+  Comment.belongsTo(User);
+  User.hasMany(Comment)
 
-Sneaker.belongsTo(Brand);
-Brand.hasMany(Sneaker);
+  Sneaker.belongsTo(Brand);
+  Brand.hasMany(Sneaker);
 
-Article.belongsTo(Sneaker);
+  Article.belongsTo(Sneaker);
+  // Auth
+  User.beforeCreate( async (user, options) => {
+    const hashedPass = await bcrypt.hash(user.password, THE_SECRET);
+    user.password = hashedPass;
+    return user;
+  });
 
+  User.beforeBulkCreate( async (users, options) => {
+    for (user of users) {
+      const hashedPass = await bcrypt.hash(user.password, THE_SECRET);
+      user.password = hashedPass;
+    }
+  });
 
-module.exports = {
-  sequelize,
-  Article,
-  Comment,
-  User,
-  Sneaker,
-  Brand,
-  CArticle,
-  CComment,
-  CUser,
-  CSneaker,
-  CBrand
-};
+  module.exports = {
+    sequelize,
+    Article,
+    Comment,
+    User,
+    Sneaker,
+    Brand,
+    CArticle,
+    CComment,
+    CUser,
+    CSneaker,
+    CBrand
+  };
