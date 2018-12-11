@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header/';
 import BrandsList from './components/Brands/List';
 import Article from './components/Article/Item';
 import axios from 'axios';
@@ -30,12 +31,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={() => {this.setState({view: 'index'})}}>Click me!</button>
+        <Header />
         <div className="view">
           <Switch>
             <Route exact path='/'       render={(props) => <BrandsList {...props} brands={this.state.brands} />} />
-            <Route exact path='/article/:id'  render={(props) => <Article {...props} />} />
-            <Route exact path='/article'      render={(props) => <Article {...props} />} />
+            <Route exact path='/articles/:id'  render={(props) => <Article {...props} />} />
+            <Route exact path='/articles'      render={(props) => <Article {...props} />} />
           </Switch>
         </div>
       </div>
