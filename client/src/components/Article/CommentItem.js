@@ -6,7 +6,7 @@ export default function CommentItem(props) {
     <div>
       <h3>{props.comment.title}</h3>
       <p>{props.comment.text}</p>
-      <p>User's Score: {props.comment.user_score}</p>
+      <p>User's Score: {props.comment.users_score}</p>
     </div>
   )
 }

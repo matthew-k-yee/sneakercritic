@@ -34,7 +34,6 @@ UsersRouter.post('/', async (req, res) => {
 
 UsersRouter.post('/login', async (req, res) => {
   try {
-    console.log(req.body);
     const {user_name, password} = req.body;
     const user = await User.findOne({where: {user_name}});
     const valid =  await bcrypt.compare(password, user.password);
