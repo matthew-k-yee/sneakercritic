@@ -86,6 +86,20 @@ async function seed() {
         email: '789@gmail.com',
         first_name: 'seth',
         last_name: 'torres'
+      },
+      {
+        user_name: 'abc',
+        password: '111',
+        email: '111@gmail.com',
+        first_name: 'John',
+        last_name: 'Smith'
+      },
+      {
+        user_name: 'def',
+        password: '222',
+        email: '222@gmail.com',
+        first_name: 'Ana',
+        last_name: 'Wilson'
       }
     ]);
 
@@ -131,45 +145,108 @@ async function seed() {
       {
         title: 'COMFORT PERSONIFIED',
         text: 'These shoes are almost as comfortable as my Skechers with memory foam, almost. Like most Nike shoes they fit small so go a half size up. I normally wear a 10 and bought a 10.5 and they fit perfect.',
-        user_id: '2',
+        user_id: '1',
         article_id: 1,
         users_score: 3
       },
       {
         title: 'GREAT SHOE, VERY COMFORTABLE',
         text: 'I wear these shoes a couple times a week. Very comfortable and go with just about anything you could wear!',
-        user_id: '3',
+        user_id: '2',
         article_id: 1,
         users_score: 3
       },
       {
         title: 'Ugly',
         text: 'These are ugly.',
-        user_id: '1',
-        article_id: 2,
+        user_id: '3',
+        article_id: 1,
         users_score: 3
       },
       {
         title: 'GROSS',
         text: 'WHAT ARE THOSE!',
-        user_id: '3',
-        article_id: 1,
+        user_id: '4',
+        article_id: 2,
         users_score: 3
       },
       {
         title: 'GENIUS',
         text: 'Can\'t wait to get these!',
-        user_id: '2',
-        article_id: 4,
+        user_id: '5',
+        article_id: 2,
         users_score: 3
       },
       {
         title: 'I WANT THEM ALL',
         text: 'I NEED THESE',
-        user_id: '3',
-        article_id: 1,
+        user_id: '1',
+        article_id: 2,
         users_score: 3
-      }
+      },
+      {
+        title: 'BEST PURCHASE EVER!!!',
+        text: 'Most comfortable show we have owned',
+        user_id: '2',
+        article_id: 3,
+        users_score: 5
+      },
+      {
+        title: 'BEAUTIFUL SHOE!',
+        text: 'Great style and fit. the shoe is generally very comfortable, aside from the fact that it hurts the top of my feet when wearing for too long.',
+        user_id: '3',
+        article_id: 3,
+        users_score: 4
+      },
+      {
+        title: 'GOOD PRODUCT',
+        text: 'Sneakers fit true to size. Very comfortable sneaker.',
+        user_id: '4',
+        article_id: 3,
+        users_score: 4
+      },
+      {
+        title: 'THESE ARE FRESHHHHHHH',
+        text: 'I NEED THESE',
+        user_id: '5',
+        article_id: 4,
+        users_score: 5
+      },
+      {
+        title: 'DROP',
+        text: 'These are lame.',
+        user_id: '1',
+        article_id: 4,
+        users_score: 1
+      },
+      {
+        title: 'Nike never disappoints!',
+        text: 'Really cool!',
+        user_id: '2',
+        article_id: 4,
+        users_score: 5
+      },
+      {
+        title: 'Awesome',
+        text: 'This shoe is clearly one of the most iconic, and I just love it, would totally recommend',
+        user_id: '3',
+        article_id: 5,
+        users_score: 4
+      },
+      {
+        title: 'NEW BALANCE SHINES!',
+        text: 'New Balance has stepped up their game with this shoe. It\'s not just visually stunning it\'s also a very solid and well made shoe.',
+        user_id: '4',
+        article_id: 5,
+        users_score: 3
+      },
+      {
+        title: 'Ronnie Fieg is a genius',
+        text: 'I NEED THESE',
+        user_id: '5',
+        article_id: 5,
+        users_score: 3
+      },
     ]);
 
   }
