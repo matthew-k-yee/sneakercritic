@@ -12,7 +12,7 @@ export default function RegisterForm(props) {
         <input
           type='text'
           name='first_name'
-          value={props.loginRegCrit.first_name}
+          value={props.credentials.first_name}
           onChange={props.onChange}
         />
       </label>
@@ -21,7 +21,7 @@ export default function RegisterForm(props) {
         <input
           type='text'
           name='last_name'
-          value ={props.loginRegCrit.last_name}
+          value ={props.credentials.last_name}
           onChange={props.onChange}
         />
       </label>
@@ -29,7 +29,7 @@ export default function RegisterForm(props) {
         Name:
         <input type='text'
           name='user_name'
-          value={props.loginRegCrit.user_name}
+          value={props.credentials.user_name}
           onChange={props.onChange}
         />
       </label>
@@ -38,7 +38,7 @@ export default function RegisterForm(props) {
         <input
           type='password'
           name='password'
-          value={props.loginRegCrit.password}
+          value={props.credentials.password}
           onChange={props.onChange}
         />
       </label>
@@ -47,7 +47,7 @@ export default function RegisterForm(props) {
         <input
           name='email'
           type='email'
-          value={props.loginRegCrit.email}
+          value={props.credentials.email}
           onChange={props.onChange}
         />
       </label>

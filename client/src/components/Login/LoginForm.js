@@ -7,7 +7,7 @@ export default function LoginForm(props) {
         Name:
         <input type='text'
           name='user_name'
-          value={props.loginRegCrit.user_name}
+          value={props.credentials.user_name}
           onChange={props.onChange}
         />
       </label>
@@ -16,7 +16,7 @@ export default function LoginForm(props) {
         <input
           type='password'
           name='password'
-          value={props.loginRegCrit.password}
+          value={props.credentials.password}
           onChange={props.onChange}
         />
       </label>

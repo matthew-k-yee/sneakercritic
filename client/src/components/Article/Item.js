@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import ArticleFullPage from './ArticleFullPage';
 const BASE_URL = 'http://localhost:3001';
@@ -28,8 +29,8 @@ export default class Item extends Component {
   }
 
   renderArticles = () => {
-   if (Array.isArray(this.state.data)) {
-      return this.state.data.map(item => <h1>{item.title}</h1>);
+   if (Array.isArray(this.state.data) && !this.state.fullPage) {
+      return this.state.data.map(item => <Link to={`/articles/${item.id}`}>{item.title}</Link>);
     }
     else {
       return <ArticleFullPage fullArticle={this.state.data}/>
@@ -40,7 +41,12 @@ export default class Item extends Component {
     return (
       <div>
         Article
-        {this.renderArticles()}
+        <Switch>
+          <Route exact path="/articles/" render={() => this.renderArticles()}/>
+          <Route exact path="/articles/:id" render={() => this.setState({
+            fullPage: true,
+          }) }/>
+        </Switch>
       </div>
     )
   }
