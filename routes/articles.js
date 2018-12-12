@@ -2,7 +2,7 @@ const express             = require('express');
 const { CommentsRouter }  = require('./comments');
 const { BrandsRouter }    = require('./brands');
 const { SneakersRouter }  = require('./sneakers')
-const { Article }         = require('../models');
+const { Article, Sneaker, Comment }         = require('../models');
 
 const ArticlesRouter = express.Router();
 ArticlesRouter.use('/comments', CommentsRouter);
@@ -39,7 +39,10 @@ ArticlesRouter.post('/',
 ArticlesRouter.get('/:article_id',
   async (req, res) => {
     try {
-      const articles = await Article.findByPk(req.params.article_id);
+      const articles = await Article.findByPk(req.params.article_id, {
+        include: [Sneaker, Comment],
+        require: true,
+      });
       res.json({articles})
     }
     catch(evt) {

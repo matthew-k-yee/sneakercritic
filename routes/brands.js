@@ -1,5 +1,5 @@
 const express = require('express');
-const { Brand } = require('../models');
+const { Brand, Article, Sneaker } = require('../models');
 
 
 const BrandsRouter = express.Router();
@@ -34,8 +34,26 @@ BrandsRouter.post('/',
 BrandsRouter.get('/:brand_id',
   async (req, res) => {
     try {
-      const brand = await Brand.findByPk(req.params.brand_id);
-      res.json({brand});
+      const brand = await Brand.findByPk(req.params.brand_id, {
+        include: [{
+          model: Sneaker,
+          require: true,
+
+          include: [{
+            model: Article,
+            require: true,
+
+          }],
+        }],
+
+      });
+      const sneakers = brand.sneakers;
+      const sneakersArry = [];
+      for(let i = 0; i < sneakers.length; i++) {
+        sneakersArry.push(sneakers[i].article);
+      }
+
+      res.json({brand,sneakersArry});
     }
     catch(evt) {
       res.status(500).json({msg: evt.message})
