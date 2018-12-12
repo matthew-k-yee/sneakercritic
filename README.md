@@ -1,26 +1,26 @@
-# Readme.md
+# SneakerCritic
 
-## app description
+## App Description
 The app is a review aggregator for sneakers using users and reviewers scores.
 The score represent how easy it is to match the sneakers look with multiple popular styles.
 
-## user interaction
+## User Interaction
 The user goes into the application and can view sneaker-related articles. A user can navigate through the navigation bar and click on either Articles or Brand. If a user clicks Articles, there will be a full list of articles rendered on the screen and the user can click on an article to read. If a user clicks Brand, the user will see different sneaker brand companies. The user can then click on a specific brand and only articles that are associated to that company will appear.
 
 When a single article is displayed on the screen, a user can read the text inside the article, submit a comment, and give the sneaker a rating from 1-5. When a user submits a rating, the app will generate a new average to show a new site score.
 
 A user can register and login for authorization. When logged in, a user can go to their profile and see there personal information - first name, last name, email, and comments they posted to articles they interacted with.
 
-## URL section
+## URL Section
 * [Github repo link](https://github.com/matthew-k-yee/sneakercritic)
 - Deployed app link — http
 
-## inspired by sites like
+## Inspired By Sites Like
 - [OpenCritic](https://opencritic.com)
 - [Finishline](https://www.finishline.com)
 - [MetaCritic](https://www.metacritic.com)
 
-## list of dependencies / technologies front-end
+## List of Dependencies / Technologies Front-End
 * [html5](https://www.w3.org/TR/html/) -- HTML is the standard markup language for creating website.
 * [css3](https://www.w3.org/Style/CSS/) -- Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML
 * [react.js](https://reactjs.org) -- A JavaScript library for building user interfaces.
@@ -41,7 +41,7 @@ A user can register and login for authorization. When logged in, a user can go t
 * [git/github](https://github.com) -- Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. GitHub Inc. is a web-based hosting service for version control using Git.
 * [PostgreSQL](https://www.postgresql.org) -- Database dialect.
 
-## npm scripts back-end
+## NPM Scripts Back-End
 - dev — nodemon server.js
 - start — node server.js
 - seed — node seed.js
@@ -79,10 +79,31 @@ A user can register and login for authorization. When logged in, a user can go t
 - / user / user id - user profile list articles you commented on, scores you gave the shoe in the article
 
 ## Code snippet
+```JavaScript
+UsersRouter.post('/login', async (req, res) => {
+  try {
+    const {user_name, password} = req.body;
+    const user = await User.findOne({where: {user_name}});
+    const valid =  await bcrypt.compare(password, user.password);
+
+    if (valid) {
+      const { id, user_name, first_name } = user;
+      const token = sign({user_name, first_name, id});
+      res.json({token,valid,id});
+    }
+    else {
+      throw Error('Invalid username or password');
+    }
+  }
+  catch(evt) {
+    res.status(401).json(evt.message);
+  }
+});
+```
 ## A guide to getting started contributing to the project
 ###### ERD
 Inline-style:
-![alt text](https://github.com/matthew-k-yee/sneakercritic/blob/master/ERD%20-%20Group%20project%203.jpeg")
+![alt text](ERD - Group project 3.jpeg)
 
 ###### Wireframe
 ###### Project Board
