@@ -13,7 +13,10 @@ ArticlesRouter.get('/',
   async (req, res) => {
     //const articles = a
     try {
-      const articles = await Article.findAll();
+      const articles = await Article.findAll( {
+        include: [Sneaker, Comment],
+        require: true,
+      });
       res.json({articles});
     }
     catch(evt) {
