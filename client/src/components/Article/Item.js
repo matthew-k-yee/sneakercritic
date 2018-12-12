@@ -8,7 +8,7 @@ export default class Item extends Component {
     super(props);
     this.state = {
       data: [],
-      fullPage: false
+      fullPage: false,
     }
   }
 
@@ -28,7 +28,7 @@ export default class Item extends Component {
   }
 
   renderArticles = () => {
-    if (Array.isArray(this.state.data)) {
+   if (Array.isArray(this.state.data)) {
       return this.state.data.map(item => <h1>{item.title}</h1>);
     }
     else {
