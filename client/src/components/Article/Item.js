@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ArticleFullPage from './ArticleFullPage';
 const BASE_URL = 'http://localhost:3001';
 
 export default class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      fullPage: false
     }
   }
 
-  async componentDidMount() {
+   componentDidMount = async () => {
     const articles = await this.getArticles();
     await this.setState({
       data: articles
@@ -18,19 +20,19 @@ export default class Item extends Component {
     console.log(this.state.data);
   }
 
-  async getArticles() {
+   getArticles = async () => {
     const id = null || this.props.match.params.id;
     return await axios.get(
       `${BASE_URL}/articles${(id) ? `/${id}` : `` }`
     ).then(data => data.data.articles);
   }
 
-  renderArticles() {
+  renderArticles = () => {
     if (Array.isArray(this.state.data)) {
       return this.state.data.map(item => <h1>{item.title}</h1>);
     }
     else {
-      return <h1>{this.state.data.title}</h1>
+      return <ArticleFullPage fullArticle={this.state.data}/>
     }
   }
 

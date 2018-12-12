@@ -125,12 +125,14 @@ class App extends Component {
       return {
         ...prevState,
         articleData: articleData,
-      }  
+      }
     });
 
   }
-  queryFullPgArticle = async (id) => {
 
+  queryFullPgArticle = async (id) => {
+    const article = await axios.get(`${BASE_URL}/articles/${id}`)
+    console.log(article)
   }
 
   render() {
@@ -140,7 +142,7 @@ class App extends Component {
         <div className="view">
           <Switch>
             <Route exact path='/' render={ (props) => <BrandsList {...props} brands={this.state.brands} /> } />
-            <Route exact path='/articles/:id' render={(props) => <Article {...props} />} />
+            <Route exact path='/articles/:id' render={(props) => <Article {...props} getFullPage={this.queryFullPgArticle}/>} loginRegCrit={this.state.loginRegCrit}/>
             <Route exact path='/articles' render={(props) => <Article {...props}/>} />
             <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} loginRegCrit={this.state.loginRegCrit}/>} />
             <Route exact path='/profile' render={(props) => <Profile {...props} />} loginRegCrit={this.state.loginRegCrit}/>
