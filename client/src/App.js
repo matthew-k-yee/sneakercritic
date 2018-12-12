@@ -26,6 +26,13 @@ class App extends Component {
         token: '',
         comments: [],
       },
+      articleData: {
+        isReady: false,
+        article: null,
+        sneaker: null,
+        brand: null,
+        comments: [],
+      }
     }
   }
 
@@ -106,6 +113,26 @@ class App extends Component {
     evt.preventDefault();
     await this.onLogin(this.state.loginRegCrit)
   }
+  resetArticleData = () => {
+    const articleData =  {
+      isReady: false,
+      article: null,
+      sneaker: null,
+      brand: null,
+      comments: [],
+    };
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        articleData: articleData,
+      }  
+    });
+
+  }
+  queryFullPgArticle = async (id) => {
+
+  }
+
   render() {
     return (
       <div className="App">

@@ -56,11 +56,13 @@ Article.hasMany(Comment);
 Comment.belongsTo(Article);
 
 Comment.belongsTo(User);
-User.hasMany(Comment)
+User.hasMany(Comment);
 
 Sneaker.belongsTo(Brand);
+
 Brand.hasMany(Sneaker);
 
+Sneaker.hasOne(Article);
 Article.belongsTo(Sneaker);
 // Auth
 User.beforeCreate( async (user, options) => {
