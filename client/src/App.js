@@ -62,38 +62,34 @@ class App extends Component {
 
   // GET http://localhost:3001/users/login
   onLogin = async (userData) => {
-    console.log('this is the userData for login', userData);
     const currentUsers =  await axios.post(`${BASE_URL}/users/login`, userData);
     this.setState(prevState => {
       return {
         loginRegCrit: {
           ...prevState.loginRegCrit,
           password: '',
-          token: currentUsers.data.token,
+          token: `Bearer ${currentUsers.data.token}`,
         }
       } });
-    console.log(currentUsers.data);
   }
 
   //POST http://localhost:3001/users
   onRegister = async (userData) => {
-    console.log(userData);
     const newUsers =  await axios.post(`${BASE_URL}/users`, userData);
     this.setState(prevState => {
       return {
         loginRegCrit: {
           ...prevState.loginRegCrit,
           password: '',
-          token: newUsers.data.token,
+          token: `Bearer ${newUsers.data.token}`,
         }
       }
     })
-    console.log('You are register ',newUsers.data);
   }
 
   //GET http://localhost:3001/users/profile
   getProfile = async () => {
-    const URL = `${BASE_URL}/profile`
+    const URL = `${BASE_URL}/users/profile`
     const resp = await axios({
       method: 'get',
       url: URL,
@@ -101,7 +97,16 @@ class App extends Component {
         Authorization: this.state.loginRegCrit.token,
       }
     });
-    console.log('this is get profile ', resp.data);
+    const userComments = resp.data.comments;
+    this.setState(prevState => {
+      return {
+      loginRegCrit: {
+        ...prevState.loginRegCrit,
+      //  first_name: resp.data.user.first_name,
+      ...resp.data.user,
+        comments: userComments,
+      }}
+    })
   }
 
   onSubmitReg = async (evt) => {
@@ -112,6 +117,7 @@ class App extends Component {
   onSubmitLog = async (evt) => {
     evt.preventDefault();
     await this.onLogin(this.state.loginRegCrit)
+    await this.getProfile();
   }
   resetArticleData = () => {
     const articleData =  {
@@ -132,7 +138,6 @@ class App extends Component {
 
   queryFullPgArticle = async (id) => {
     const article = await axios.get(`${BASE_URL}/articles/${id}`)
-    console.log(article)
   }
 
   render() {
@@ -145,7 +150,7 @@ class App extends Component {
             <Route exact path='/articles/:id' render={(props) => <Article {...props} getFullPage={this.queryFullPgArticle}/>} loginRegCrit={this.state.loginRegCrit}/>
             <Route exact path='/articles' render={(props) => <Article {...props}/>} />
             <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} loginRegCrit={this.state.loginRegCrit}/>} />
-            <Route exact path='/profile' render={(props) => <Profile {...props} />} loginRegCrit={this.state.loginRegCrit}/>
+            <Route exact path='/profile' render={(props) => <Profile {...props} info={this.state.loginRegCrit} />}/>
             <Route
               exact path={'/register'}
               render={
