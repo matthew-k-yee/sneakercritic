@@ -20,7 +20,10 @@ CommentsRouter.get('/', async (req, res) => {
 CommentsRouter.post('/', async (req, res) => {
   try{
     const comment = await Comment.create(req.body)
-  } catch(evt) {
+    res.json({ comment })
+
+  }
+  catch(evt) {
     res.status(500).json({
     msg: evt.message
   })
@@ -47,6 +50,8 @@ CommentsRouter.put('/:comment_id', async (req, res) => {
     const comment = await Comment.findByPk(req.params.comment_id);
     const resp = await Comment.update({
       title: data.title || comment.title,
+      text: data.text || comment.text,
+      users_score: data.users_score || comment.users_score,
     },
     {
       where: {
