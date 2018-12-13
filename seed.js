@@ -21,7 +21,8 @@ async function seed() {
         description: '"In with the new" doesn\'t always mean "out with the old." The Grade School Jordan Retro XI Basketball Shoes deliver the perfect marriage of classic comfort and modern style, seamlessly blending old with new. Featuring a full-grain leather and synthetic upper with perforations for ventilation, these kicks offer the comfort kids needs to perform their best. From the courts to the classroom, the thick, durable rubber outsole ensures they\'ll have top-notch grip and stability, so they can push their limits with confidence. The Jumpman logo on the heel adds iconic recognition and pays tribute to one of the best.',
         brand_id: 4,
         site_score: 5,
-        users_score: 3
+        users_score: 3,
+        sneaker_image: "air-jordan-11-bred-2019.jpg"
       },
       {
         name: 'Adidas Orginals YEEZY Boost 350 V2',
@@ -31,7 +32,8 @@ async function seed() {
         description: 'The adidas Yeezy Boost 350 V2 debuted in 2016 as the fifth piece of footwear from the adidas and Kanye West partnership. The second generation of the original Yeezy Boost 350, the V2 version featured a higher-cut and patterned Primeknit upper with a contrasting stripe that read "SPLY - 350." The reworked upper sat on a larger volume adidas Boost sole.',
         brand_id: 2,
         site_score: 3,
-        users_score: 4
+        users_score: 4,
+        sneaker_image: 'adidas-yeezy-boost-350-v2-semi-frozen-yellow-buying-guide-1.jpg'
       },
       {
         name: 'KITH X NEW BALANCE 997 ',
@@ -41,7 +43,8 @@ async function seed() {
         description: 'Inspired by two of Ronnie Fieg\'s favorite collaborations.',
         brand_id: 3,
         site_score: 3,
-        users_score: 4
+        users_score: 4,
+        sneaker_image: 'kith-new-balance-997-collection-6.jpg'
       },
       {
         name: 'Nike Air Fear of God 1',
@@ -51,7 +54,8 @@ async function seed() {
         description: 'Fear of God\'s own Jerry Lorenzo and his first Nike collaboration.',
         brand_id: 1,
         site_score: 3,
-        users_score: 4
+        users_score: 4,
+        sneaker_image: 'nike-air-fear-of-god-1-black.jpg'
       },
       {
         name: 'Reebok Daytona DMX',
@@ -61,7 +65,8 @@ async function seed() {
         description: 'Ride high with the Daytona DMX. Fast and furious style never compromises on comfort. A cushy EVA midsole combined with a removable sockliner that accommodates orthotics equals a comfort win. Float around life\'s curves with DMX moving air technology and stay connected to the ground with the durable rubber outsole.',
         brand_id: 1,
         site_score: 3,
-        users_score: 4
+        users_score: 4,
+        sneaker_image: 'reebok-daytona-dmx-mu-pack-1.jpg'
       }
     ]);
 
