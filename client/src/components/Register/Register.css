@@ -1,0 +1,43 @@
+.RegisterForm{
+  padding: 1em;
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form input {
+  margin-bottom: 1em;
+}
+
+form label {
+  text-align: left;
+  display: block;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+form input {
+  width: 100%;
+  padding: 0.7em;
+  margin-bottom: 0.5em;
+}
+
+form input:focus{
+  outline: 1px solid red;
+}
+
+form button {
+  padding: 0.7em;
+  border: 0;
+  width: 100px
+}
+
+form button:hover{
+  background: red
+}
+
+form a {
+  font-size: 30px;
+}
