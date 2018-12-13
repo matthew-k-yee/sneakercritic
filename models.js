@@ -3,8 +3,7 @@ const {Sequelize} = require('sequelize');
 const bcrypt = require('bcrypt');
 const THE_SECRET = 5;
 
-const sequelize = new Sequelize({
-  database: 'sneakercritics_db',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   operatorsAliases: false,
   define: {

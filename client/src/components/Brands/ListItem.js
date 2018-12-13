@@ -10,9 +10,9 @@ export default function ListItem(props) {
     <article>
       <h1><Link to={`articles/?brand_id=${brand.id}`}>{brand.brand_name}</Link></h1>
       <ul>
-        <li>
+        {/* <li>
           {new Date(brand.updated_at).toLocaleString('en-us')}
-        </li>
+        </li> */}
       </ul>
     </article>
   )
