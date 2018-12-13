@@ -72,6 +72,13 @@ async function seed() {
 
     const user = await User.bulkCreate([
       {
+        user_name: 'anonymous',
+        password: '',
+        email: '',
+        first_name: 'anonymous',
+        last_name: ''
+      },
+      {
         user_name: 'mky',
         password: '123',
         email: '123@gmail.com',
