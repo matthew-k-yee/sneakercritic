@@ -21,15 +21,11 @@ export default class Articles extends Component {
       <Switch>
         // Render a list of articles
         <Route exact path={`${MATCH_PATH}`} render={(props) => {
-          return (
-            <List {...props} server_url={this.props.server_url} />
-          )
+          return (<List {...props} server_url={this.props.server_url} />)
         }}/>
         // Render the article page
         <Route exact path={`${MATCH_PATH}/:id`} render={(props) => {
-          return (
-            <Full {...props} server_url={this.props.server_url} />
-          )
+          return (<Full {...props} server_url={this.props.server_url} />)
         }}/>
       </Switch>
     )

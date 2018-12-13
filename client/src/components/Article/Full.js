@@ -1,5 +1,6 @@
 // Importing Packages
 import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Full extends Component {
@@ -7,7 +8,9 @@ export default class Full extends Component {
     super(props)
     this.state = {
       loading: false,
-      data: {},
+      data: {
+        comments: [],
+      },
       id: Number(this.props.match.params.id)
     }
     console.log(props);
@@ -24,7 +27,6 @@ export default class Full extends Component {
       `${this.props.server_url}/articles/${this.state.id}`
     ).then(data => {
       this.setState({loading: false});
-      console.log(data.data.articles);
       return data.data.articles;
     }).catch(
       () => {
@@ -33,11 +35,50 @@ export default class Full extends Component {
     );
   }
 
+  renderArticle() {
+    if (!this.state.loading) {
+      return (
+        <div>
+          <h1>{this.state.data.title}</h1>
+          <p>{this.state.data.text}</p>
+        </div>
+      )
+    }
+    else {
+      return (<div>Loading</div>);
+    }
+  }
+
+  renderComments() {
+    if (!this.state.loading) {
+      return (
+        this.state.data.comments.map(item => this.renderCommentItem(item))
+      )
+    }
+    else {
+      return ('')
+    }
+  }
+
+  renderCommentItem(item) {
+    return (
+      <div>
+        <h1>{item.title}</h1>
+        <span>{new Date(item.created_at).toLocaleString('en-us')}</span>
+        <p>{item.text}</p>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
-        <h1>{(this.state.data) ? this.state.data.title : ''}</h1>
-        <p>{(this.state.data) ? this.state.data.text : ''}</p>
+        {this.renderArticle()}
+        {this.renderComments()}
+        {
+          // Redirects user to the error page should the articles fail to load.
+          (this.state.loading === 'error') ? <Redirect to="/error?source=articlepage" /> : ''
+        }
       </div>
     )
   }
