@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // Importing Components
 import Header from './components/Header/';
-import Brands from './components/Brands/Item';
+import Brands from './components/Brands/';
 import Articles from './components/Article/';
 import Register from './components/Register/Index';
 import Profile from './components/Profile/Index';
@@ -96,6 +96,7 @@ class App extends Component {
       credentials: {
         ...prevState.credentials,
         ...resp.data.user,
+        password: '',
         comments: userComments,
       }}
     })
@@ -116,33 +117,48 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="view">
-          <Switch>
-            <Route exact path='/' />
-            <Route
-              path='/articles'
-              render={
-                (props) => <Articles {...props} server_url={SERVER_URL} />
+        <Switch>
+          {/* Homepage */}
+          <Route exact path='/' />
+          {/* Articles */}
+          <Route
+            path='/articles'
+            render={
+              (props) => <Articles {...props} server_url={SERVER_URL} />
+            }
+          />
+          {/* Brands */}
+          <Route
+            path='/brands'
+            render={
+              (props) => <Brands {...props} server_url={SERVER_URL} />
+            }
+          />
+          {/* Login */}
+          <Route
+            exact path='/login'
+            render={(props) =>
+              <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />
+            }
+          />
+          {/* Account */}
+          <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
+          {/* Register */}
+          <Route exact path={'/register'}
+            render={
+              (props) => {
+                return (
+                  <Register
+                    {...props}
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmitReg}
+                    credentials={this.state.credentials}
+                  />
+                )
               }
-            />
-            <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />} />
-            <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
-            <Route exact path={'/register'}
-              render={
-                (props) => {
-                  return (
-                    <Register
-                      {...props}
-                      onChange={this.onChange}
-                      onSubmit={this.onSubmitReg}
-                      credentials={this.state.credentials}
-                    />
-                  )
-                }
-              }
-            />
-          </Switch>
-        </div>
+            }
+          />
+        </Switch>
       </div>
     );
   }

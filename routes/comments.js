@@ -4,17 +4,17 @@ const { Comment } = require('../models');
 const CommentsRouter = express.Router();
 
 // http://localhost:3001/comments
-CommentsRouter.get('/', async (req, res) => {
-  try {
-    const comment = await Comment.findAll();
-    res.json({ comment })
+CommentsRouter.get('/',
+  async (req, res) => {
+    try {
+      const comment = await Comment.findAll();
+      res.json({ comment })
+    }
+    catch(evt) {
+      res.status(500).json({msg: evt.message});
+    }
   }
-  catch(evt) {
-    res.status(500).json({
-      msg: evt.message
-    });
-  }
-});
+);
 
 // POST http://localhost:3001/comments/
 CommentsRouter.post('/', async (req, res) => {
@@ -27,8 +27,8 @@ CommentsRouter.post('/', async (req, res) => {
     res.status(500).json({
     msg: evt.message
   })
-  }
-});
+
+
 
 // GET http://localhost:3001/comments/:comment_id
 CommentsRouter.get('/:comment_id', async (req, res) => {
@@ -36,9 +36,7 @@ CommentsRouter.get('/:comment_id', async (req, res) => {
     const comment = await Comment.findByPk(req.params.comment_id);
     res.json({ comment })
   } catch(evt) {
-    res.status(500).json({
-      msg: evt.message
-    });
+    res.status(500).json({msg: evt.message});
   }
 });
 
