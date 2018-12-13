@@ -3,7 +3,10 @@ const {Sequelize} = require('sequelize');
 const bcrypt = require('bcrypt');
 const THE_SECRET = 5;
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(
+  // process.env.DATABASE_URL,
+  {
+  database: 'sneakercritics_db',
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
@@ -48,7 +51,8 @@ const Sneaker = sequelize.define('sneaker', {
 });
 
 const Brand = sequelize.define('brand', {
-  brand_name: Sequelize.STRING
+  brand_name: Sequelize.STRING,
+  brand_image: Sequelize.STRING
 });
 
 
