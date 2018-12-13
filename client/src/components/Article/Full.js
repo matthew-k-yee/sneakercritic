@@ -137,7 +137,6 @@ export default class Full extends Component {
   onSubmitComment =  async (evt,index) => {
     evt.preventDefault();
     const comments = this.state.data.comments;
-    debugger;
     await axios.put(
       `${this.props.server_url}/comments/${comments[index].id}`,comments[index]
     )
@@ -147,7 +146,6 @@ export default class Full extends Component {
   onSubmitNewComment =  async (evt) => {
     evt.preventDefault();
     const newComment = this.state.newComment;
-    debugger;
     const resp = await axios.post(
       `${this.props.server_url}/comments`, newComment
     )
