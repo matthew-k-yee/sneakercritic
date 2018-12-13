@@ -26,7 +26,7 @@ export default class Articles extends Component {
         }}/>
         {/* Render the article page*/}
         <Route exact path={`${MATCH_PATH}/:id`} render={(props) => {
-          return (<Full {...props} server_url={this.props.server_url} />)
+          return (<Full {...props} server_url={this.props.server_url} credentials={this.props.credentials} />)
         }}/>
       </Switch>
     )

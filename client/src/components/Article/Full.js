@@ -15,7 +15,7 @@ export default class Full extends Component {
         title: '',
         text: '',
         users_score: 0,
-        user_id: 1,
+        user_id: (!!this.props.credentials.id) ? Number(this.props.credentials.id) : 1,
         article_id: Number(this.props.match.params.id),
       },
       users: [],
@@ -134,7 +134,7 @@ export default class Full extends Component {
 
   }
 
-  onSubmitCommet =  async (evt,index) => {
+  onSubmitComment =  async (evt,index) => {
     evt.preventDefault();
     const comments = this.state.data.comments;
     debugger;
@@ -144,7 +144,7 @@ export default class Full extends Component {
     this.toggleCommentEditMode(index)
   }
 
-  onSubmitNewCommet =  async (evt) => {
+  onSubmitNewComment =  async (evt) => {
     evt.preventDefault();
     const newComment = this.state.newComment;
     debugger;
@@ -193,7 +193,7 @@ export default class Full extends Component {
           edit </button>
         </div>
       ////// render main content
-      const renderForm =  <form onSubmit={(evt) => this.onSubmitCommet(evt,index)} className="CommentsForm">
+      const renderForm =  <form onSubmit={(evt) => this.onSubmitComment(evt,index)} className="CommentsForm">
           <label>
             Name:
             <input type='text'
@@ -247,7 +247,7 @@ export default class Full extends Component {
 
   renderFormContents = () => {
     const item = this.state.newComment;
-    const newRenderForm =  <form onSubmit={this.onSubmitNewCommet} className="NewCommentsForm">
+    const newRenderForm =  <form onSubmit={this.onSubmitNewComment} className="NewCommentsForm">
         <label>
           Name:
           <input type='text'
