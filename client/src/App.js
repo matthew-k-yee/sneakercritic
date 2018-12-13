@@ -14,6 +14,7 @@ import Login from './components/Login/';
 
 // Setting variables
 const SERVER_URL = 'http://localhost:3001';
+const CLIENT_URL = process.env.public_url;
 
 
 class App extends Component {
