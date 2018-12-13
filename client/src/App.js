@@ -116,33 +116,41 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="view">
-          <Switch>
-            <Route exact path='/' />
-            <Route
-              path='/articles'
-              render={
-                (props) => <Articles {...props} server_url={SERVER_URL} />
+        <Switch>
+          {/* Homepage */}
+          <Route exact path='/' />
+          {/* Articles */}
+          <Route
+            path='/articles'
+            render={
+              (props) => <Articles {...props} server_url={SERVER_URL} />
+            }
+          />
+          {/* Login */}
+          <Route
+            exact path='/login'
+            render={(props) =>
+              <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />
+            }
+          />
+          {/* Account */}
+          <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
+          {/* Register */}
+          <Route exact path={'/register'}
+            render={
+              (props) => {
+                return (
+                  <Register
+                    {...props}
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmitReg}
+                    credentials={this.state.credentials}
+                  />
+                )
               }
-            />
-            <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />} />
-            <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
-            <Route exact path={'/register'}
-              render={
-                (props) => {
-                  return (
-                    <Register
-                      {...props}
-                      onChange={this.onChange}
-                      onSubmit={this.onSubmitReg}
-                      credentials={this.state.credentials}
-                    />
-                  )
-                }
-              }
-            />
-          </Switch>
-        </div>
+            }
+          />
+        </Switch>
       </div>
     );
   }
