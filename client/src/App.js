@@ -12,8 +12,8 @@ import Register from './components/Register/';
 import Profile from './components/Profile/';
 import Login from './components/Login/';
 
-// Writing variables
-const BASE_URL = 'http://localhost:3001';
+// Setting variables
+const SERVER_URL = 'http://localhost:3001';
 
 
 class App extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
 
   // GET http://localhost:3001/users/login
   onLogin = async (userData) => {
-    const currentUsers =  await axios.post(`${BASE_URL}/users/login`, userData);
+    const currentUsers =  await axios.post(`${SERVER_URL}/users/login`, userData);
     this.setState(prevState => {
       return {
         credentials: {
@@ -68,7 +68,7 @@ class App extends Component {
 
   // POST http://localhost:3001/users
   onRegister = async (userData) => {
-    const newUsers =  await axios.post(`${BASE_URL}/users`, userData);
+    const newUsers =  await axios.post(`${SERVER_URL}/users`, userData);
     this.setState(prevState => {
       return {
         credentials: {
@@ -82,7 +82,7 @@ class App extends Component {
 
   // GET http://localhost:3001/users/profile
   getProfile = async () => {
-    const URL = `${BASE_URL}/users/profile`;
+    const URL = `${SERVER_URL}/users/profile`;
     const resp = await axios({
       method: 'get',
       url: URL,
@@ -119,7 +119,12 @@ class App extends Component {
         <div className="view">
           <Switch>
             <Route exact path='/' />
-            <Route path='/articles' render={(props) => <Articles {...props}/>} />
+            <Route
+              path='/articles'
+              render={
+                (props) => <Articles {...props} server_url={SERVER_URL} />
+              }
+            />
             <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />} />
             <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
             <Route exact path={'/register'}

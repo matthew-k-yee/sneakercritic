@@ -1,44 +1,36 @@
+// Importing Packages
 import React, { Component } from 'react';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
-const BASE_URL = 'http://localhost:3001';
+import { Route, Switch } from 'react-router-dom';
+
+// Importing Components
+import List from './List';
+import Full from './Full';
+
+// Setting variables
 let MATCH_PATH = '';
 
+// Main Articles component
 export default class Articles extends Component {
   constructor(props) {
     super(props);
     MATCH_PATH = props.match.path;
   }
 
-  componentDidMount = async () => {
-    const articles = await this.getArticles();
-    await this.setState({
-      data: articles
-    });
-    console.log(this.state.data);
-  }
-
-  getArticles = async () => {
-    const id = null || this.props.match.params.id;
-    return await axios.get(
-      `${BASE_URL}/articles${(id) ? `/${id}` : `` }`
-    ).then(data => data.data.articles);
-  }
-
   render() {
     return (
       <Switch>
         // Render a list of articles
-        <Route exact path={`${MATCH_PATH}`} />
+        <Route exact path={`${MATCH_PATH}`} render={(props) => {
+          return (
+            <List {...props} server_url={this.props.server_url} />
+          )
+        }}/>
         // Render the article page
         <Route exact path={`${MATCH_PATH}/:id`} render={(props) => {
           return (
-            <div>
-              Hi
-              {console.log(props)}
-            </div>
+            <Full {...props} server_url={this.props.server_url} />
           )
-        }} />
+        }}/>
       </Switch>
     )
   }
