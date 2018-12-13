@@ -63,7 +63,7 @@ async function seed() {
         num_colors: 4,
         product_detail: 'UPPER: Mesh, MIDSOLE: Air-Sole, OUTSOLE: Waffle and flex grooves',
         description: 'Ride high with the Daytona DMX. Fast and furious style never compromises on comfort. A cushy EVA midsole combined with a removable sockliner that accommodates orthotics equals a comfort win. Float around life\'s curves with DMX moving air technology and stay connected to the ground with the durable rubber outsole.',
-        brand_id: 1,
+        brand_id: 6,
         site_score: 3,
         users_score: 4,
         sneaker_image: 'reebok-daytona-dmx-mu-pack-1.jpg'
