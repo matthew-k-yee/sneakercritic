@@ -1,4 +1,6 @@
 import React from "react";
+import './Register.css';
+
 // user_name: Sequelize.STRING,
 // password: Sequelize.STRING,
 // email: Sequelize.STRING,
@@ -8,7 +10,7 @@ export default function RegisterForm(props) {
   return (
     <form onSubmit={props.onSubmit} className="RegisterForm">
       <label>
-        firstName:
+        First Name:
         <input
           type='text'
           name='first_name'
@@ -17,7 +19,7 @@ export default function RegisterForm(props) {
         />
       </label>
       <label>
-        lastName:
+        Last Name:
         <input
           type='text'
           name='last_name'
@@ -26,7 +28,7 @@ export default function RegisterForm(props) {
         />
       </label>
       <label>
-        Name:
+        Username:
         <input type='text'
           name='user_name'
           value={props.credentials.user_name}
@@ -34,7 +36,7 @@ export default function RegisterForm(props) {
         />
       </label>
       <label>
-        password:
+        Password:
         <input
           type='password'
           name='password'
@@ -43,7 +45,7 @@ export default function RegisterForm(props) {
         />
       </label>
       <label>
-        email:
+        Email:
         <input
           name='email'
           type='email'
