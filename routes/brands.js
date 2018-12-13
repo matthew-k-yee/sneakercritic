@@ -1,4 +1,4 @@
-const express = require('express');
+onst express = require('express');
 const { Brand, Article, Sneaker } = require('../models');
 
 
@@ -8,7 +8,19 @@ const BrandsRouter = express.Router();
 BrandsRouter.get('/',
   async (req, res) => {
     try {
-      const brands = await Brand.findAll();
+      const brands = await Brand.findAll( {
+        include: [{
+          model: Sneaker,
+          require: true,
+
+          include: [{
+            model: Article,
+            require: true,
+
+          }],
+        }],
+
+      });
       res.json({brands});
     }
     catch(evt) {
