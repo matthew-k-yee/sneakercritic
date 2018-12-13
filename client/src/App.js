@@ -96,6 +96,7 @@ class App extends Component {
       credentials: {
         ...prevState.credentials,
         ...resp.data.user,
+        password: '',
         comments: userComments,
       }}
     })
