@@ -1,8 +1,13 @@
 .brands{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .brands li {
   list-style: none;
+}
+
+.brands a:visited{
+  color: black
 }
