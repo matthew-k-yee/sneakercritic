@@ -32,7 +32,7 @@ export default class Full extends Component {
     if(data && data.comments && data.comments.length > 0) {
       data.comments.forEach(comment => {
       comment.inEditMode = false;
-      comment.editable = true;})}
+      comment.editable = this.state.newComment.user_id === comment.user_id ? true : false;})}
     await this.setState({data, users});
   }
 
@@ -167,6 +167,19 @@ export default class Full extends Component {
     });
   }
 
+  deleteButton = async (id,index) => {
+    const comments = this.state.data.comments.filter((item) => item.id !== id);
+    const resp = await axios.delete(
+      `${this.props.server_url}/comments/${id}`
+    );
+    console.log(resp.data);
+    this.setState({
+      data: {
+        comments: comments,
+      },
+    });
+
+  }
 
   renderCommentItem = (item, index) => {
     const user = this.state.users.filter(useritem => useritem.id === item.user_id)[0];
@@ -177,19 +190,37 @@ export default class Full extends Component {
     : <p><span>updated at</span> {new Date(item.updated_at).toLocaleString('en-us')} </p>
 
     ///// Edit button
-    const editSaveButton = item.inEditMode
+    const editSaveButton = item.editable
     ? <div className="comment-edit-button-div">
       <button className="comment-edit-button"
         type='button'
         onClick={() => this.toggleCommentEditMode(index)}>
-        save </button>
+        edit </button>
       </div>
     : <div className="comment-edit-button-div">
         <button className="comment-edit-button"
           type='button'
-          onClick={() => this.toggleCommentEditMode(index)}>
+          >
           edit </button>
         </div>
+
+    //// Delete Button
+    const deleteButton = item.editable
+    ? <div className="comment-delete-button-div">
+      <button className="comment-delete-button"
+        type='button'
+        onClick={ () => this.deleteButton(item.id,index)}>
+        delete
+      </button>
+     </div>
+    : <div className="comment-delete-button-div">
+      <button className="comment-delete-button"
+        type='button'
+        >
+        delete
+      </button>
+    </div>
+
       ////// render main content
       const renderForm =  <form onSubmit={(evt) => this.onSubmitComment(evt,index)} className="CommentsForm">
           <label>
@@ -225,11 +256,14 @@ export default class Full extends Component {
           <button type="submit">Submit</button>
         </form>
 
-      const renderPost = <div key={`comment-post-${index}`} id={`comment-post-${index}`}><h1>{item.title}</h1>
+      const renderPost =
+      <div key={`comment-post-${index}`} id={`comment-post-${index}`}><h1>{item.title}</h1>
         <h1>{user.user_name}</h1>
         {updatedAt}
         <p>{item.text}</p>
-        {editSaveButton}</div>
+        {deleteButton}
+        {editSaveButton}
+      </div>
 
 
 
