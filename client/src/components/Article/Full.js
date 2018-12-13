@@ -11,14 +11,31 @@ export default class Full extends Component {
       data: {
         comments: [],
       },
+      users: [],
       id: Number(this.props.match.params.id)
     }
     console.log(props);
   }
 
   async componentDidMount() {
+    const users = await this.getUsers();
+    console.log(users);
     const data = await this.getArticle();
-    await this.setState({data});
+    await this.setState({data, users});
+  }
+
+  async getUsers() {
+    this.setState({loading: true});
+    return await axios.get(
+      `${this.props.server_url}/users/`
+    ).then(data => {
+      this.setState({loading: false});
+      return data.data.user;
+    }).catch(
+      () => {
+        this.setState({loading: 'error'});
+      }
+    );
   }
 
   async getArticle() {
@@ -52,7 +69,7 @@ export default class Full extends Component {
   renderComments() {
     if (!this.state.loading) {
       return (
-        this.state.data.comments.map(item => this.renderCommentItem(item))
+        this.state.data.comments.map((item, index) => this.renderCommentItem(item, index))
       )
     }
     else {
@@ -60,10 +77,13 @@ export default class Full extends Component {
     }
   }
 
-  renderCommentItem(item) {
+  renderCommentItem(item, index) {
+    const user = this.state.users.filter(useritem => useritem.id === item.user_id)[0];
+    console.log(user);
     return (
-      <div>
+      <div key={`comment-${index}`} id={`comment-${index}`}>
         <h1>{item.title}</h1>
+        <h1>{user.user_name}</h1>
         <span>{new Date(item.created_at).toLocaleString('en-us')}</span>
         <p>{item.text}</p>
       </div>
