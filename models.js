@@ -44,7 +44,8 @@ const Sneaker = sequelize.define('sneaker', {
   description: Sequelize.TEXT,
   brand_id: Sequelize.INTEGER,
   site_score: Sequelize.INTEGER,
-  users_score: Sequelize.INTEGER
+  users_score: Sequelize.INTEGER,
+  sneaker_image: Sequelize.STRING
 });
 
 const Brand = sequelize.define('brand', {
