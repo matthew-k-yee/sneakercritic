@@ -1,7 +1,8 @@
 // Importing Packages
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import queryString from 'query-string';
 
 // Importing Components
 import ListItem from './ListItem';
@@ -12,12 +13,20 @@ export default class List extends Component {
     super(props);
     this.state = {
       loading: false, // Loading: false (not loading), true (loading), 'error' (error)
-      data: []
+      data: [],
+      query: queryString.parse(props.location.search)
     }
   }
 
   async componentDidMount() {
-    const data = await this.getArticles();
+    let data = await (
+      this.getArticles().then(
+        (resp) => {
+          return this.filterArticles([...resp], this.state.query);
+        }
+      ).catch(() => this.setState({loading: 'error'}))
+    );
+    // data = await this.filterArticles([...data], this.state.query)
     await this.setState({data});
   }
 
@@ -34,6 +43,23 @@ export default class List extends Component {
         this.setState({loading: 'error'});
       }
     );
+  }
+
+  // Filters a list of articles based on queries
+  async filterArticles(data, query) {
+    return data.filter(
+      (item) => {
+        for (let key in query) {
+          switch (key) {
+            case 'brand_id': // Filter by brand id
+              return (item.sneaker.brand_id === Number(query.brand_id));
+            default:
+              return !(item[key] === undefined || item[key] != query[key])
+          }
+        }
+        return true
+      }
+    )
   }
 
   renderArticles() {
