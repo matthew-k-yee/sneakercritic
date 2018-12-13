@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // Importing Components
 import Header from './components/Header/';
-import Brands from './components/Brands/Item';
+import Brands from './components/Brands/';
 import Articles from './components/Article/';
 import Register from './components/Register/Index';
 import Profile from './components/Profile/Index';
@@ -125,6 +125,13 @@ class App extends Component {
             path='/articles'
             render={
               (props) => <Articles {...props} server_url={SERVER_URL} />
+            }
+          />
+          {/* Brands */}
+          <Route
+            path='/brands'
+            render={
+              (props) => <Brands {...props} server_url={SERVER_URL} />
             }
           />
           {/* Login */}
