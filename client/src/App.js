@@ -1,15 +1,19 @@
+// Importing Packages
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/';
-import BrandsList from './components/Brands/List';
-import Article from './components/Article/Item';
-import Register from './components/Register/Index';
-import Profile from './components/Profile/Index';
-import Login from './components/Login/Index';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001';
+// Importing Components
+import Header from './components/Header/';
+import Brands from './components/Brands/Item';
+import Articles from './components/Article/';
+import Register from './components/Register/';
+import Profile from './components/Profile/';
+import Login from './components/Login/';
+
+// Setting variables
+const SERVER_URL = 'http://localhost:3001';
 
 
 class App extends Component {
@@ -17,7 +21,7 @@ class App extends Component {
     super(props);
     this.state = {
       brands: [],
-      loginRegCrit: {
+      credentials: {
         user_name: '',
         password: '',
         email: '',
@@ -32,28 +36,17 @@ class App extends Component {
         sneaker: null,
         brand: null,
         comments: [],
-      }
+      },
+      loggedIn: false,
     }
   }
-
-  async componentDidMount() {
-    const brands = await this.getBrands();
-    this.setState({
-      brands: brands,
-    })
-  }
-
-  getBrands = async () => {
-    return await axios.get(`${BASE_URL}/brands`).then(data => data.data.brands);
-  }
-
 
   onChange = (evt) => {
     const {name, value} = evt.target;
     this.setState(prevState => {
       return {
-        loginRegCrit: {
-          ...prevState.loginRegCrit,
+        credentials: {
+          ...prevState.credentials,
           [name]: value,
         }
       }
@@ -62,24 +55,24 @@ class App extends Component {
 
   // GET http://localhost:3001/users/login
   onLogin = async (userData) => {
-    const currentUsers =  await axios.post(`${BASE_URL}/users/login`, userData);
+    const currentUsers =  await axios.post(`${SERVER_URL}/users/login`, userData);
     this.setState(prevState => {
       return {
-        loginRegCrit: {
-          ...prevState.loginRegCrit,
+        credentials: {
+          ...prevState.credentials,
           password: '',
           token: `Bearer ${currentUsers.data.token}`,
         }
       } });
   }
 
-  //POST http://localhost:3001/users
+  // POST http://localhost:3001/users
   onRegister = async (userData) => {
-    const newUsers =  await axios.post(`${BASE_URL}/users`, userData);
+    const newUsers =  await axios.post(`${SERVER_URL}/users`, userData);
     this.setState(prevState => {
       return {
-        loginRegCrit: {
-          ...prevState.loginRegCrit,
+        credentials: {
+          ...prevState.credentials,
           password: '',
           token: `Bearer ${newUsers.data.token}`,
         }
@@ -87,23 +80,22 @@ class App extends Component {
     })
   }
 
-  //GET http://localhost:3001/users/profile
+  // GET http://localhost:3001/users/profile
   getProfile = async () => {
-    const URL = `${BASE_URL}/users/profile`
+    const URL = `${SERVER_URL}/users/profile`;
     const resp = await axios({
       method: 'get',
       url: URL,
       headers: {
-        Authorization: this.state.loginRegCrit.token,
+        Authorization: this.state.credentials.token,
       }
     });
     const userComments = resp.data.comments;
     this.setState(prevState => {
       return {
-      loginRegCrit: {
-        ...prevState.loginRegCrit,
-      //  first_name: resp.data.user.first_name,
-      ...resp.data.user,
+      credentials: {
+        ...prevState.credentials,
+        ...resp.data.user,
         comments: userComments,
       }}
     })
@@ -111,33 +103,13 @@ class App extends Component {
 
   onSubmitReg = async (evt) => {
     evt.preventDefault();
-    await this.onRegister(this.state.loginRegCrit)
+    await this.onRegister(this.state.credentials)
   }
 
   onSubmitLog = async (evt) => {
     evt.preventDefault();
-    await this.onLogin(this.state.loginRegCrit)
+    await this.onLogin(this.state.credentials)
     await this.getProfile();
-  }
-  resetArticleData = () => {
-    const articleData =  {
-      isReady: false,
-      article: null,
-      sneaker: null,
-      brand: null,
-      comments: [],
-    };
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        articleData: articleData,
-      }
-    });
-
-  }
-
-  queryFullPgArticle = async (id) => {
-    const article = await axios.get(`${BASE_URL}/articles/${id}`)
   }
 
   render() {
@@ -146,13 +118,16 @@ class App extends Component {
         <Header />
         <div className="view">
           <Switch>
-            <Route exact path='/' render={ (props) => <BrandsList {...props} brands={this.state.brands} /> } />
-            <Route exact path='/articles/:id' render={(props) => <Article {...props} getFullPage={this.queryFullPgArticle}/>} loginRegCrit={this.state.loginRegCrit}/>
-            <Route exact path='/articles' render={(props) => <Article {...props}/>} />
-            <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} loginRegCrit={this.state.loginRegCrit}/>} />
-            <Route exact path='/profile' render={(props) => <Profile {...props} info={this.state.loginRegCrit} />}/>
+            <Route exact path='/' />
             <Route
-              exact path={'/register'}
+              path='/articles'
+              render={
+                (props) => <Articles {...props} server_url={SERVER_URL} />
+              }
+            />
+            <Route exact path='/login' render={(props) => <Login {...props} onChange={this.onChange} onSubmit={this.onSubmitLog} credentials={this.state.credentials} />} />
+            <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
+            <Route exact path={'/register'}
               render={
                 (props) => {
                   return (
@@ -160,17 +135,17 @@ class App extends Component {
                       {...props}
                       onChange={this.onChange}
                       onSubmit={this.onSubmitReg}
-                      loginRegCrit={this.state.loginRegCrit}
+                      credentials={this.state.credentials}
                     />
                   )
                 }
               }
             />
           </Switch>
-                      </div>
-                    </div>
-                  );
-                }
-              }
+        </div>
+      </div>
+    );
+  }
+}
 
-              export default App;
+export default App;
