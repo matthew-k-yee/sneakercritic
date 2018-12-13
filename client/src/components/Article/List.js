@@ -2,7 +2,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
+import './Article.css';
 import queryString from 'query-string';
+
 
 // Importing Components
 import ListItem from './ListItem';
@@ -85,7 +88,7 @@ export default class List extends Component {
 
   render() {
     return (
-      <div className='articles'>
+      <div className="article-list">
         {this.renderArticles()}
         {
           // Redirects user to the error page should the articles fail to load.
