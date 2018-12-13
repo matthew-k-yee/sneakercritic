@@ -10,6 +10,7 @@ export default class Full extends Component {
       loading: false,
       data: {
         comments: [],
+        sneaker: {},
       },
       newComment: {
         title: '',
@@ -66,10 +67,12 @@ export default class Full extends Component {
 
   renderArticle = () => {
     if (!this.state.loading) {
+      const article = this.state.data;
       return (
         <div>
-          <h1>{this.state.data.title}</h1>
-          <p>{this.state.data.text}</p>
+          <h1>{article.title}</h1>
+          <p>{article.text}</p>
+          <img src={`/resources/${article.sneaker.sneaker_image}`} alt={`${article.sneaker.name}`} />
         </div>
       )
     }

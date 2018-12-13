@@ -74,6 +74,7 @@ export default class List extends Component {
               key={`article-${item.id}`}
               item={item}
               match={this.props.match}
+              clearData={this.clearData}
             />
           )
         })
