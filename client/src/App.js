@@ -8,9 +8,9 @@ import axios from 'axios';
 import Header from './components/Header/';
 import Brands from './components/Brands/';
 import Articles from './components/Article/';
-import Register from './components/Register/Index';
-import Profile from './components/Profile/Index';
-import Login from './components/Login/Index';
+import Register from './components/Register/';
+import Profile from './components/Profile/';
+import Login from './components/Login/';
 
 // Setting variables
 const SERVER_URL = 'http://localhost:3001';
@@ -124,7 +124,7 @@ class App extends Component {
           <Route
             path='/articles'
             render={
-              (props) => <Articles {...props} server_url={SERVER_URL} />
+              (props) => <Articles {...props} server_url={SERVER_URL} credentials={this.state.credentials} />
             }
           />
           {/* Brands */}
