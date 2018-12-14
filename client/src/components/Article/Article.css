@@ -47,3 +47,29 @@ article a{
 .ArticlePage img{
   width: 500px;
 }
+
+#newComment{
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#newComment button{
+  padding-top: 10px;  
+}
+
+.commentbox h1{
+  font-size: 25px;
+}
+
+.cb-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.cb-container button{
+  margin-right: 5px;
+}
