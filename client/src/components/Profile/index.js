@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Profile.css'
 
 // taken from full.js
 const renderCommentItem = (item, index,props) => {
@@ -55,7 +55,7 @@ const renderCommentItem = (item, index,props) => {
         const render = item.inEditMode  ? newRenderForm  : renderPost
 
         return (
-          <div key={`comment-${index}`} id={`comment-${index}`}>
+          <div className= 'profile-comments' key={`comment-${index}`} id={`comment-${index}`}>
             {render}
           </div>
         )
@@ -74,13 +74,17 @@ const renderCommentItem = (item, index,props) => {
 
 
       export default function Profile(props) {
-        const renderCommentss = (props.isLogedin && props.credentials.comments.length > 0) ? renderComments(props) : <h3>No comments to list</h3>
-        const renderProfile = props.isLogedin ? <h3>{props.credentials.first_name} {props.credentials.last_name}</h3> : <h3>Please log in</h3>
+        const renderCommentss = (props.isLogedin && props.credentials.comments.length > 0) ? renderComments(props) : null
+        const renderProfile = props.isLogedin ? <h3>{props.credentials.first_name} {props.credentials.last_name}</h3> : <h3>Please log in.</h3>
         return (
-          <div>
+          <div className= 'profile-box'>
             <h1>Profile</h1>
-            {renderProfile}
-            {renderCommentss}
+            <div className='testing'>
+              {renderProfile}
+            </div>
+            <div className='profile-wrapper'>
+              {renderCommentss}
+            </div>
           </div>
         )
       }
