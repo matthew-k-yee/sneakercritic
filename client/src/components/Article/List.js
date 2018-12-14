@@ -74,6 +74,7 @@ export default class List extends Component {
               key={`article-${item.id}`}
               item={item}
               match={this.props.match}
+              clearData={this.clearData}
             />
           )
         })
@@ -88,7 +89,7 @@ export default class List extends Component {
 
   render() {
     return (
-      <div className="article-list">
+      <div className="Article-List">
         {this.renderArticles()}
         {
           // Redirects user to the error page should the articles fail to load.

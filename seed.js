@@ -4,12 +4,30 @@ async function seed() {
   try {
     // seed stuff :)
     const brand = await Brand.bulkCreate([
-      {brand_name: 'Nike'},
-      {brand_name: 'Adidas'},
-      {brand_name: 'New Balance'},
-      {brand_name: 'Jordan'},
-      {brand_name: 'Puma'},
-      {brand_name: 'Reebok'}
+      {
+        brand_name: 'Nike',
+        brand_image: 'nike.png'
+      },
+      {
+        brand_name: 'Adidas',
+        brand_image: 'adidas.png'
+      },
+      {
+        brand_name: 'New Balance',
+        brand_image: 'new_balance.png'
+      },
+      {
+        brand_name: 'Jordan',
+        brand_image: 'jordan.png'
+      },
+      {
+        brand_name: 'Puma',
+        brand_image: 'puma.png'
+      },
+      {
+        brand_name: 'Reebok',
+        brand_image: 'reebok.png'
+      }
     ]);
 
     const roles = await Role.bulkCreate([

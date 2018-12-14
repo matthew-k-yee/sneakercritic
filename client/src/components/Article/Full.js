@@ -1,6 +1,7 @@
 // Importing Packages
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import './Article.css'
+import {  Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Full extends Component {
@@ -10,6 +11,7 @@ export default class Full extends Component {
       loading: false,
       data: {
         comments: [],
+        sneaker: {},
       },
       newComment: {
         id: 0,
@@ -20,6 +22,7 @@ export default class Full extends Component {
         article_id: Number(this.props.match.params.id),
         inEditMode: false,
         editable: true,
+
       },
       users: [],
       id: Number(this.props.match.params.id)
@@ -27,6 +30,12 @@ export default class Full extends Component {
     console.log(props);
   }
 
+    makeEditabler = (comments) => {
+      comments.forEach(comment => {
+      comment.inEditMode = false;
+      comment.editable = this.state.newComment.user_id === comment.user_id ? true : false;})
+      return comments;
+    }
    componentDidMount = async () => {
     const users = await this.getUsers();
     console.log(users);
@@ -69,10 +78,12 @@ export default class Full extends Component {
 
   renderArticle = () => {
     if (!this.state.loading) {
+      const article = this.state.data;
       return (
         <div>
-          <h1>{this.state.data.title}</h1>
-          <p>{this.state.data.text}</p>
+          <h1>{article.title}</h1>
+          <p>{article.text}</p>
+          <img src={`/resources/${article.sneaker.sneaker_image}`} alt={`${article.sneaker.name}`} />
         </div>
       )
     }
@@ -134,7 +145,6 @@ export default class Full extends Component {
     this.setState({
       newComment
     });
-
   }
 
   onSubmitComment =  async (evt,index) => {
@@ -166,24 +176,33 @@ export default class Full extends Component {
     newwComment.inEditMode = false;
     newwComment.editable = true;
     const comments = [newwComment,...this.state.data.comments];
-    this.setState({
+
+    this.setState( prevState => {
+      return {
       blankComment,
       data: {
+        ...prevState.data,
         comments: comments,
-      },
+      }
+    }
     });
   }
 
   deleteButton = async (id,index) => {
-    const comments = this.state.data.comments.filter((item) => item.id !== id);
+    let comments = this.state.data.comments.filter((item) => item.id !== id);
+    comments = this.makeEditabler(comments);
+
     const resp = await axios.delete(
       `${this.props.server_url}/comments/${id}`
     );
     console.log(resp.data);
-    this.setState({
+    this.setState(prevState =>{
+      return {
       data: {
+        ...prevState.data,
         comments: comments,
-      },
+      }
+    }
     });
 
   }
@@ -264,12 +283,15 @@ export default class Full extends Component {
         </form>
 
       const renderPost =
-      <div key={`comment-post-${index}`} id={`comment-post-${index}`}><h1>{item.title}</h1>
-        <h1>{user.user_name}</h1>
+      <div className='commentbox' key={`comment-post-${index}`} id={`comment-post-${index}`}>
+        <h1>{item.title}</h1>
+        <h3>by: {user.user_name}</h3>
         {updatedAt}
         <p>{item.text}</p>
-        {deleteButton}
-        {editSaveButton}
+        <div className='cb-container'>
+          {deleteButton}
+          {editSaveButton}
+        </div>
       </div>
 
 
@@ -288,7 +310,7 @@ export default class Full extends Component {
     const item = this.state.newComment;
     const newRenderForm =  <form onSubmit={this.onSubmitNewComment} className="NewCommentsForm">
         <label>
-          Name:
+          Title:
           <input type='text'
             name='title'
             value={item.title}
@@ -328,7 +350,7 @@ export default class Full extends Component {
 
   render() {
     return (
-      <div>
+      <div className = 'ArticlePage'>
         {this.renderArticle()}
         {this.renderFormContents()}
         {this.renderComments()}

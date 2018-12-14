@@ -1,3 +1,75 @@
-.article-list {
-  border: solid blue .5em;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+
+.Article-List{
+  width: 70%;
+  display: grid;
+  margin: auto;
+}
+
+article h1{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 38px;
+}
+
+article p{
+  font-family: 'Lora', serif;
+}
+
+article ul{
+  display: grid;
+}
+
+article li {
+  list-style: none;
+  grid-row: 3fr
+}
+
+article a{
+  color: black;
+}
+
+.ArticlePage{
+  width: 70%;
+  margin: auto;
+}
+
+.ArticlePage h1{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 40px;
+}
+
+.ArticlePage p {
+  font-family: 'Lora', serif;
+}
+
+.ArticlePage img{
+  width: 500px;
+}
+
+#newComment{
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#newComment button{
+  padding-top: 10px;  
+}
+
+.commentbox h1{
+  font-size: 25px;
+}
+
+.cb-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.cb-container button{
+  margin-right: 5px;
 }

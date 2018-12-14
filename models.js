@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const THE_SECRET = 5;
 
 const sequelize = new Sequelize(
+  // process.env.DATABASE_URL,
   {
   database: 'sneakercritics_db',
   dialect: 'postgres',
@@ -50,7 +51,8 @@ const Sneaker = sequelize.define('sneaker', {
 });
 
 const Brand = sequelize.define('brand', {
-  brand_name: Sequelize.STRING
+  brand_name: Sequelize.STRING,
+  brand_image: Sequelize.STRING
 });
 
 const Role = sequelize.define('role', {
