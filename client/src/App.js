@@ -154,7 +154,13 @@ class App extends Component {
         <Header />
         <Switch>
           {/* Homepage */}
-          <Route exact path='/' />
+          <Route exact path='/' render={
+            () => {
+              return (
+                <img className='logo' src='/resources/logo.png' alt='SneakerCritic' />
+              )
+            }
+          }/>
           {/* Articles */}
           <Route
             path='/articles'

@@ -7,8 +7,5 @@
   padding: 35px;
   text-decoration: none;
   font-size: 25px;
-}
-
-.headr a:hover{
-  color: blue;
+  color: black;
 }
