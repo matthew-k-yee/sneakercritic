@@ -1,3 +1,49 @@
-.article-list {
-  border: solid blue .5em;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+
+.Article-List{
+  width: 70%;
+  display: grid;
+  margin: auto;
+}
+
+article h1{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 38px;
+}
+
+article p{
+  font-family: 'Lora', serif;
+}
+
+article ul{
+  display: grid;
+}
+
+article li {
+  list-style: none;
+  grid-row: 3fr
+}
+
+article a{
+  color: black;
+}
+
+.ArticlePage{
+  width: 70%;
+  margin: auto;
+}
+
+.ArticlePage h1{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 40px;
+}
+
+.ArticlePage p {
+  font-family: 'Lora', serif;
+}
+
+.ArticlePage img{
+  width: 500px;
 }

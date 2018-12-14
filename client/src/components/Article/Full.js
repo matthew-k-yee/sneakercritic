@@ -1,5 +1,6 @@
 // Importing Packages
 import React, { Component } from 'react';
+import './Article.css'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -18,6 +19,9 @@ export default class Full extends Component {
         users_score: 0,
         user_id: (!!this.props.credentials.id) ? Number(this.props.credentials.id) : 1,
         article_id: Number(this.props.match.params.id),
+        inEditMode: false,
+        editable: true,
+
       },
       users: [],
       id: Number(this.props.match.params.id)
@@ -25,6 +29,12 @@ export default class Full extends Component {
     console.log(props);
   }
 
+    makeEditabler = (comments) => {
+      comments.forEach(comment => {
+      comment.inEditMode = false;
+      comment.editable = this.state.newComment.user_id === comment.user_id ? true : false;})
+      return comments;
+    }
    componentDidMount = async () => {
     const users = await this.getUsers();
     console.log(users);
@@ -134,7 +144,6 @@ export default class Full extends Component {
     this.setState({
       newComment
     });
-
   }
 
   onSubmitComment =  async (evt,index) => {
@@ -158,28 +167,40 @@ export default class Full extends Component {
       users_score: 0,
       user_id: 1,
       article_id: Number(this.state.id),
+      inEditMode: false,
+      editable: true,
     }
-
-    const comments = [resp.data.comment,...this.state.data.comments];
+    let newwComment = resp.data.comment;
+    newwComment.inEditMode = false;
+    newwComment.editable = true;
+    const comments = [newwComment,...this.state.data.comments];
     //comments.push();
-    this.setState({
+    this.setState( prevState => {
+      return {
       blankComment,
       data: {
+        ...prevState.data,
         comments: comments,
-      },
+      }
+    }
     });
   }
 
   deleteButton = async (id,index) => {
-    const comments = this.state.data.comments.filter((item) => item.id !== id);
+    let comments = this.state.data.comments.filter((item) => item.id !== id);
+    comments = this.makeEditabler(comments);
+
     const resp = await axios.delete(
       `${this.props.server_url}/comments/${id}`
     );
     console.log(resp.data);
-    this.setState({
+    this.setState(prevState =>{
+      return {
       data: {
+        ...prevState.data,
         comments: comments,
-      },
+      }
+    }
     });
 
   }
@@ -324,7 +345,7 @@ export default class Full extends Component {
 
   render() {
     return (
-      <div>
+      <div className = 'ArticlePage'>
         {this.renderArticle()}
         {this.renderFormContents()}
         {this.renderComments()}
