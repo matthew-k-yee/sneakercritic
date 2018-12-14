@@ -3,7 +3,9 @@ const {Sequelize} = require('sequelize');
 const bcrypt = require('bcrypt');
 const THE_SECRET = 5;
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(
+  {
+  database: 'sneakercritics_db',
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
@@ -51,12 +53,18 @@ const Brand = sequelize.define('brand', {
   brand_name: Sequelize.STRING
 });
 
+const Role = sequelize.define('role', {
+  role_name: Sequelize.STRING,
+});
+
 
 Article.hasMany(Comment);
 Comment.belongsTo(Article);
 
 Comment.belongsTo(User);
 User.hasMany(Comment);
+User.belongsTo(Role);
+Role.hasMany(User);
 
 Sneaker.belongsTo(Brand);
 
@@ -85,4 +93,5 @@ module.exports = {
   User,
   Sneaker,
   Brand,
+  Role,
 };

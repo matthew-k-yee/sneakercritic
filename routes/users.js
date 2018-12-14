@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { sign, passport } = require('../auth');
-const { User, Comment } = require('../models');
+const { User, Comment, Role } = require('../models');
 
 const UsersRouter = express.Router();
 
@@ -70,6 +70,16 @@ UsersRouter.get('/profile', passport.authenticate('jwt', {session: false}),
     }
   }
 );
+UsersRouter.get('/roles', async (req, res) => {
+    try {
+      const roles = await Role.findAll()
+      res.json({roles});
+    }
+    catch(evt) {
+      res.status(401).json(evt.message);
+    }
+  }
+);
 
 // PUT http://localhost:3001/users/:user_id
 UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}),
@@ -101,13 +111,13 @@ UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}),
 );
 
 // DELETE http://localhost:3001/users/:user_id
-UsersRouter.delete('/:user_id', passport.authenticate('jwt', {session: false}),
+UsersRouter.delete('/:user_name', passport.authenticate('jwt', {session: false}),
   async (req, res) => {
     try {
       await User.destroy(
         {
           where: {
-            id: req.params.user_id,
+            user_name: req.params.user_name,
           }
         },
         {

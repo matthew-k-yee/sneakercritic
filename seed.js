@@ -1,4 +1,4 @@
-const { sequelize, Article, Comment, User, Sneaker, Brand } = require('./models');
+const { sequelize, Article, Comment, User, Sneaker, Brand , Role} = require('./models');
 
 async function seed() {
   try {
@@ -12,6 +12,12 @@ async function seed() {
       {brand_name: 'Reebok'}
     ]);
 
+    const roles = await Role.bulkCreate([
+      {role_name: 'Admin'},
+      {role_name: 'Member'},
+      {role_name: 'Guess'},
+    ]);
+    
     const sneaker = await Sneaker.bulkCreate([
       {
         name: 'Air Jordan 11 “Bred” ',
@@ -76,42 +82,48 @@ async function seed() {
         password: '',
         email: '',
         first_name: 'anonymous',
-        last_name: ''
+        last_name: '',
+        role_id: 3,
       },
       {
         user_name: 'mky',
         password: '123',
         email: '123@gmail.com',
         first_name: 'matt',
-        last_name: 'yee'
+        last_name: 'yee',
+        role_id: 2,
       },
       {
         user_name: 'tar',
         password: '456',
         email: '456@gmail.com',
         first_name: 'troy',
-        last_name: 'richardson'
+        last_name: 'richardson',
+        role_id: 1,
       },
       {
         user_name: 'st',
         password: '789',
         email: '789@gmail.com',
         first_name: 'seth',
-        last_name: 'torres'
+        last_name: 'torres',
+        role_id: 1,
       },
       {
         user_name: 'abc',
         password: '111',
         email: '111@gmail.com',
         first_name: 'John',
-        last_name: 'Smith'
+        last_name: 'Smith',
+        role_id: 2,
       },
       {
         user_name: 'def',
         password: '222',
         email: '222@gmail.com',
         first_name: 'Ana',
-        last_name: 'Wilson'
+        last_name: 'Wilson',
+        role_id: 2,
       }
     ]);
 
@@ -261,6 +273,8 @@ async function seed() {
       },
     ]);
 
+    const allUsers = await User.findAll();
+    console.table(allUsers);
   }
   catch(evt) {
     console.error(evt);
