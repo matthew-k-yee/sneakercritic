@@ -28,6 +28,8 @@ class App extends Component {
         last_name: '',
         token: '',
         comments: [],
+        role_id: 3,// 3 = 'Guess'
+
       },
       articleData: {
         isReady: false,
@@ -44,14 +46,46 @@ class App extends Component {
     const {name, value} = evt.target;
     this.setState(prevState => {
       return {
+        ...prevState,
         credentials: {
           ...prevState.credentials,
           [name]: value,
         }
       }
-    })
+    });
   }
 
+  onDelete = async () => {
+    if(this.state.credentials.user_name !== "anonymous") {
+      const URL = `${SERVER_URL}/users/${this.state.credentials.user_name}`;
+      const resp = await axios.delete({
+        method: 'get',
+        url: URL,
+        headers: {
+          Authorization: this.state.credentials.token,
+        }
+      });
+      console.log(resp);
+      this.onLogoff();
+    }
+  }
+
+  onLogoff = () => {
+    this.setState(prevState => {
+      return {
+        credentials: {
+          user_name: '',
+          password: '',
+          email: '',
+          first_name: '',
+          last_name: '',
+          token: '',
+          comments: [],
+          role_id: 3,// 3 = 'Guess'
+        },
+        loggedIn: false,
+      } });
+  }
   // GET http://localhost:3001/users/login
   onLogin = async (userData) => {
     const currentUsers =  await axios.post(`${SERVER_URL}/users/login`, userData);
@@ -61,7 +95,8 @@ class App extends Component {
           ...prevState.credentials,
           password: '',
           token: `Bearer ${currentUsers.data.token}`,
-        }
+        },
+        loggedIn: true,
       } });
   }
 
@@ -74,7 +109,8 @@ class App extends Component {
           ...prevState.credentials,
           password: '',
           token: `Bearer ${newUsers.data.token}`,
-        }
+        },
+        loggedIn: true,
       }
     })
   }
@@ -141,7 +177,7 @@ class App extends Component {
             }
           />
           {/* Account */}
-          <Route exact path='/profile' render={(props) => <Profile {...props} credentials={this.state.credentials} />}/>
+          <Route exact path='/profile' render={(props) => <Profile isLogedin={this.state.loggedIn} onChange={this.onChange} {...props} credentials={this.state.credentials} onDelete={this.onDelete} onLogoff={this.onLogoff}/>}/>
           {/* Register */}
           <Route exact path={'/register'}
             render={

@@ -55,12 +55,18 @@ const Brand = sequelize.define('brand', {
   brand_image: Sequelize.STRING
 });
 
+const Role = sequelize.define('role', {
+  role_name: Sequelize.STRING,
+});
+
 
 Article.hasMany(Comment);
 Comment.belongsTo(Article);
 
 Comment.belongsTo(User);
 User.hasMany(Comment);
+User.belongsTo(Role);
+Role.hasMany(User);
 
 Sneaker.belongsTo(Brand);
 
@@ -89,4 +95,5 @@ module.exports = {
   User,
   Sneaker,
   Brand,
+  Role,
 };

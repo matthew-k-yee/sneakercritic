@@ -1,7 +1,7 @@
 // Importing Packages
 import React, { Component } from 'react';
 import './Article.css'
-import { Link, Redirect } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Full extends Component {
@@ -14,6 +14,7 @@ export default class Full extends Component {
         sneaker: {},
       },
       newComment: {
+        id: 0,
         title: '',
         text: '',
         users_score: 0,
@@ -162,10 +163,11 @@ export default class Full extends Component {
       `${this.props.server_url}/comments`, newComment
     )
     const blankComment = {
+      id: 0,
       title: '',
       text: '',
       users_score: 0,
-      user_id: 1,
+      user_id: (!!this.props.credentials.id) ? Number(this.props.credentials.id) : 1,
       article_id: Number(this.state.id),
       inEditMode: false,
       editable: true,
@@ -174,7 +176,7 @@ export default class Full extends Component {
     newwComment.inEditMode = false;
     newwComment.editable = true;
     const comments = [newwComment,...this.state.data.comments];
-    //comments.push();
+
     this.setState( prevState => {
       return {
       blankComment,
