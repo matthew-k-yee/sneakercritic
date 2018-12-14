@@ -1,4 +1,7 @@
 .brands{
+  margin-top: 5em;
+  width: 65%;
+  margin: auto;
   display: grid;
   grid-template-columns: 2fr 2fr;
   grid-template-rows: 1fr 1fr;
@@ -10,4 +13,8 @@
 
 .brands a:visited{
   color: black
+}
+
+.NewCommentsForm {
+
 }

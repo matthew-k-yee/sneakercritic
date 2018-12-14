@@ -11,6 +11,9 @@ export default function ListItem(props) {
       <h1><Link to={`${match.path}/${article.id}`}>{article.title}</Link></h1>
       <ul>
         <li>
+          <p>{article.text}</p>
+        </li>
+        <li>
           {new Date(article.updated_at).toLocaleString('en-us')}
         </li>
         <li>
@@ -28,9 +31,6 @@ export default function ListItem(props) {
           </Link>
         </li>
       </ul>
-      <div>
-        <p>{article.text}</p>
-      </div>
     </article>
   )
 }
