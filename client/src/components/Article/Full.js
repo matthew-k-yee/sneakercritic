@@ -281,12 +281,15 @@ export default class Full extends Component {
         </form>
 
       const renderPost =
-      <div key={`comment-post-${index}`} id={`comment-post-${index}`}><h1>{item.title}</h1>
-        <h1>{user.user_name}</h1>
+      <div className='commentbox' key={`comment-post-${index}`} id={`comment-post-${index}`}>
+        <h1>{item.title}</h1>
+        <h3>by: {user.user_name}</h3>
         {updatedAt}
         <p>{item.text}</p>
-        {deleteButton}
-        {editSaveButton}
+        <div className='cb-container'>
+          {deleteButton}
+          {editSaveButton}
+        </div>
       </div>
 
 
@@ -305,7 +308,7 @@ export default class Full extends Component {
     const item = this.state.newComment;
     const newRenderForm =  <form onSubmit={this.onSubmitNewComment} className="NewCommentsForm">
         <label>
-          Name:
+          Title:
           <input type='text'
             name='title'
             value={item.title}
