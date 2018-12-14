@@ -13,7 +13,9 @@ import Profile from './components/Profile/';
 import Login from './components/Login/';
 
 // Setting variables
-const SERVER_URL = 'https://sheltered-shore-90169.herokuapp.com';
+// const SERVER_URL = 'https://sheltered-shore-90169.herokuapp.com';
+const SERVER_URL = 'http://localhost:3001'
+
 
 class App extends Component {
   constructor(props) {

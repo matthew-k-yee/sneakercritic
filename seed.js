@@ -2,7 +2,6 @@ const { sequelize, Article, Comment, User, Sneaker, Brand , Role} = require('./m
 
 async function seed() {
   try {
-    // seed stuff :)
     const brand = await Brand.bulkCreate([
       {
         brand_name: 'Nike',
@@ -35,7 +34,7 @@ async function seed() {
       {role_name: 'Member'},
       {role_name: 'Guess'},
     ]);
-    
+
     const sneaker = await Sneaker.bulkCreate([
       {
         name: 'Air Jordan 11 “Bred” ',
