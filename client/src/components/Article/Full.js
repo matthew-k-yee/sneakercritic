@@ -79,11 +79,15 @@ export default class Full extends Component {
   renderArticle = () => {
     if (!this.state.loading) {
       const article = this.state.data;
+      const renderImage =  (
+        article.sneaker && article.sneaker.sneaker_image) ? <img src={`/resources/${article.sneaker.sneaker_image}`} alt={`${article.sneaker.name}`} />
+      : <div>Loading</div>
+
       return (
         <div>
           <h1>{article.title}</h1>
           <p>{article.text}</p>
-          <img src={`/resources/${article.sneaker.sneaker_image}`} alt={`${article.sneaker.name}`} />
+          {renderImage}
         </div>
       )
     }
@@ -106,22 +110,32 @@ export default class Full extends Component {
   toggleCommentEditMode = (index) => {
     const comments = this.state.data.comments;
     comments[index].inEditMode = !comments[index].inEditMode;
-    this.setState({
-      data: {
-        comments: comments,
-      },
-    });
+    this.setState(
+      prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            comments: comments,
+          }
+        }
+      }
+    );
 
   }
 
   toggleCommentinEditable = (index) => {
     const comments = this.state.data.comments;
     comments[index].editable = !comments[index].editable;
-    this.setState({
-      data: {
-        comments: comments,
-      },
-    });
+    this.setState(
+      prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            comments: comments,
+          }
+        }
+      }
+    );
 
   }
 
@@ -130,11 +144,16 @@ export default class Full extends Component {
     const {name, value} = evt.target
     comments[index][name] = value;
 
-    this.setState({
-      data: {
-        comments: comments,
-      },
-    });
+    this.setState(
+      prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            comments: comments,
+          }
+        }
+      }
+    );
 
   }
   onChangeNewComment = (evt) => {
@@ -196,14 +215,16 @@ export default class Full extends Component {
       `${this.props.server_url}/comments/${id}`
     );
     console.log(resp.data);
-    this.setState(prevState =>{
-      return {
-      data: {
-        ...prevState.data,
-        comments: comments,
+    this.setState(
+      prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            comments: comments,
+          }
+        }
       }
-    }
-    });
+    );
 
   }
 
