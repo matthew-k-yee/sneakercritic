@@ -289,9 +289,6 @@ async function seed() {
         users_score: 3
       },
     ]);
-
-    const allUsers = await User.findAll();
-    console.table(allUsers);
   }
   catch(evt) {
     console.error(evt);

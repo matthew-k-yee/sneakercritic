@@ -8,7 +8,6 @@ const ArticlesRouter = express.Router();
 ArticlesRouter.use('/comments', CommentsRouter);
 ArticlesRouter.use('/brands', BrandsRouter);
 
-// GET http://localhost:3001/articles/
 ArticlesRouter.get('/',
   async (req, res) => {
     //const articles = a
@@ -25,7 +24,6 @@ ArticlesRouter.get('/',
   }
 );
 
-// POST http://localhost:3001/articles/
 ArticlesRouter.post('/',
   async (req, res) => {
     try {
@@ -38,7 +36,6 @@ ArticlesRouter.post('/',
   }
 );
 
-// GET http://localhost:3001/articles/:article_id
 ArticlesRouter.get('/:article_id',
   async (req, res) => {
     try {
@@ -54,7 +51,6 @@ ArticlesRouter.get('/:article_id',
   }
 );
 
-// PUT http://localhost:3001/articles/:article_id
 ArticlesRouter.put('/:article_id',
   async (req, res) => {
   // res.json({msg: `update article by id ${req.params.article_id}`});
@@ -80,10 +76,8 @@ ArticlesRouter.put('/:article_id',
   }
 );
 
-// DELETE http://localhost:3001/articles/:article_id
 ArticlesRouter.delete('/:article_id',
   async (req, res) => {
-  // res.json({msg: `delete article by id ${req.params.article_id}`});
     try {
       await Article.destroy(
         {

@@ -1,10 +1,6 @@
 .profile-box{
 }
 
-/* .testing{
-  background-color: black;
-} */
-
 .profile-wrapper{
   display: grid;
   grid-template-columns: 2fr 2fr

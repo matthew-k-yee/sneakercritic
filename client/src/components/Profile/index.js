@@ -1,11 +1,11 @@
 import React from 'react';
 import './Profile.css'
 
-// taken from full.js
+
 const renderCommentItem = (item, index,props) => {
   const user = props.credentials;
   console.log(item);
-  ///// time created
+
   const updatedAt = item.updated_at === item.created_at
   ? <p><span>created at</span> {new Date(item.created_at).toLocaleString('en-us')} </p>
   : <p><span>updated at</span> {new Date(item.updated_at).toLocaleString('en-us')} </p>

@@ -1,4 +1,3 @@
-// Importing Packages
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
@@ -7,10 +6,8 @@ import './Article.css';
 import queryString from 'query-string';
 
 
-// Importing Components
 import ListItem from './ListItem';
 
-// Article List Component
 export default class List extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +26,6 @@ export default class List extends Component {
         }
       ).catch(() => this.setState({loading: 'error'}))
     );
-    // data = await this.filterArticles([...data], this.state.query)
     await this.setState({data});
   }
 

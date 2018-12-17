@@ -57,7 +57,7 @@ A user can register and login for authorization. When logged in, a user can go t
 - GET / brands / brand id - show unique brand by id
 - GET / brands / brand id / sneaker id - show article of the sneaker of a unique brand by id
 
-- GET / sneakers — show all shoes/ post sneakers/
+- GET / sneakers — show all sneakers
 - GET / sneakers / id  - show unique sneaker by id
 - PUT / sneakers / id  - update unique sneaker by id
 - Delete / sneakers / id - delete unique sneaker by id
@@ -100,10 +100,18 @@ UsersRouter.post('/login', async (req, res) => {
   }
 });
 ```
+
+```JavaScript  
+<Switch>
+  <Route exact path={`${MATCH_PATH}`} render={(props) => {
+    return (<List {...props} server_url={this.props.server_url} />)
+  }}/>
+</Switch>
+```
 ## A guide to getting started contributing to the project
 ###### ERD
 Inline-style:
-![alt text](ERD - Group project 3.jpeg)
+![alt text](https://raw.githubusercontent.com/matthew-k-yee/sneakercritic/master/ERD%20-%20Group%20project%203.jpeg)
 
 ###### Wireframe
 ###### Project Board

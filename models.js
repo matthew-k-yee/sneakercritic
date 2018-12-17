@@ -1,5 +1,5 @@
 const {Sequelize} = require('sequelize');
-// Auth
+
 const bcrypt = require('bcrypt');
 const THE_SECRET = 5;
 

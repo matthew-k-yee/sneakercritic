@@ -4,7 +4,6 @@ const { Brand, Article, Sneaker } = require('../models');
 
 const BrandsRouter = express.Router();
 
-// http://localhost:3001/brands
 BrandsRouter.get('/',
   async (req, res) => {
     try {
@@ -29,7 +28,6 @@ BrandsRouter.get('/',
   }
 );
 
-// POST http://localhost:3001/brands/
 BrandsRouter.post('/',
   async (req, res) => {
     try {
@@ -42,7 +40,6 @@ BrandsRouter.post('/',
   }
 );
 
-// GET http://localhost:3001/brands/:brand_id
 BrandsRouter.get('/:brand_id',
   async (req, res) => {
     try {
@@ -72,12 +69,10 @@ BrandsRouter.get('/:brand_id',
     }
   }
 );
-//
-// PUT http://localhost:3001/brands/:brand_id
+
 BrandsRouter.put('/:brand_id',
   async (req, res) => {
     try {
-      //res.json({msg: `update brand by id ${req.params.brand_id}`});
       const data = req.body;
       const brand = await Brand.findByPk(req.params.brand_id);
       const resp = await Brand.update(
@@ -98,7 +93,6 @@ BrandsRouter.put('/:brand_id',
   }
 );
 
-// DELETE http://localhost:3001/brands/:brand_id
 BrandsRouter.delete('/:brand_id', async (req, res) => {
   try {
     await Brand.destroy(

@@ -3,7 +3,6 @@ const { Comment } = require('../models');
 
 const CommentsRouter = express.Router();
 
-// http://localhost:3001/comments
 CommentsRouter.get('/',
 async (req, res) => {
   try {
@@ -16,12 +15,11 @@ async (req, res) => {
 }
 );
 
-// POST http://localhost:3001/comments/
 CommentsRouter.post('/', async (req, res) => {
   try{
     const comment = await Comment.create(req.body)
     res.json({ comment })
-    
+
   }
   catch(evt) {
     res.status(500).json({
@@ -32,7 +30,6 @@ CommentsRouter.post('/', async (req, res) => {
 
 
 
-// GET http://localhost:3001/comments/:comment_id
 CommentsRouter.get('/:comment_id', async (req, res) => {
   try{
     const comment = await Comment.findByPk(req.params.comment_id);
@@ -42,9 +39,7 @@ CommentsRouter.get('/:comment_id', async (req, res) => {
   }
 });
 
-// PUT http://localhost:3001/comments/:comment_id
 CommentsRouter.put('/:comment_id', async (req, res) => {
-  // res.json({msg: `update comment by id ${req.params.comment_id}`});
   try{
     const data = req.body;
     const comment = await Comment.findByPk(req.params.comment_id);
@@ -66,7 +61,6 @@ CommentsRouter.put('/:comment_id', async (req, res) => {
   }
 });
 
-// DELETE http://localhost:3001/comments/:comment_id
 CommentsRouter.delete('/:comment_id', async (req, res) => {
   try{
     await Comment.destroy({

@@ -5,7 +5,6 @@ const { User, Comment, Role } = require('../models');
 
 const UsersRouter = express.Router();
 
-// http://localhost:3001/users
 UsersRouter.get('/', async (req, res) => {
   try {
     const user = await User.findAll();
@@ -16,9 +15,7 @@ UsersRouter.get('/', async (req, res) => {
     res.status(401).json(evt.message);
   }});
 
-// POST http://localhost:3001/users/
 UsersRouter.post('/', async (req, res) => {
-  //res.json({msg: 'post a user'});
   try {
     const data = req.body;
     const user = await User.create(data);
@@ -31,10 +28,6 @@ UsersRouter.post('/', async (req, res) => {
   }
 });
 
-// GET http://localhost:3001/users/:user_id
-// UsersRouter.get('/:user_id', (req, res) => {
-//   res.json({msg: `get user by id ${req.params.user_id}`});
-// });
 
 UsersRouter.post('/login', async (req, res) => {
   try {
@@ -81,10 +74,8 @@ UsersRouter.get('/roles', async (req, res) => {
   }
 );
 
-// PUT http://localhost:3001/users/:user_id
 UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}),
   async (req, res) => {
-  //res.json({msg: `update user by id ${req.params.user_id}`});
     try {
       const data = req.body;
       const user = await User.findByPk(req.params.user_id);
@@ -110,7 +101,6 @@ UsersRouter.put('/:user_id', passport.authenticate('jwt', {session: false}),
   }
 );
 
-// DELETE http://localhost:3001/users/:user_id
 UsersRouter.delete('/:user_name', passport.authenticate('jwt', {session: false}),
   async (req, res) => {
     try {

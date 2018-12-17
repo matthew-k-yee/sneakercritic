@@ -1,11 +1,6 @@
 import React from "react";
 import './Register.css';
 
-// user_name: Sequelize.STRING,
-// password: Sequelize.STRING,
-// email: Sequelize.STRING,
-// first_name: Sequelize.STRING,
-// last_name: Sequelize.STRING
 export default function RegisterForm(props) {
   return (
     <form onSubmit={props.onSubmit} className="RegisterForm">

@@ -1,8 +1,6 @@
-// Importing Packages
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Article Item Component
 export default function ListItem(props) {
   const article = props.item;
   const match = props.match;

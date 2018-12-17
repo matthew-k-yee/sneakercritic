@@ -1,4 +1,3 @@
-// Importing Packages
 import React, { Component } from 'react';
 import './Article.css'
 import {  Redirect } from 'react-router-dom';
@@ -27,7 +26,6 @@ export default class Full extends Component {
       users: [],
       id: Number(this.props.match.params.id)
     }
-    console.log(props);
   }
 
     makeEditabler = (comments) => {
@@ -214,7 +212,6 @@ export default class Full extends Component {
     const resp = await axios.delete(
       `${this.props.server_url}/comments/${id}`
     );
-    console.log(resp.data);
     this.setState(
       prevState => {
         return {
@@ -230,13 +227,10 @@ export default class Full extends Component {
 
   renderCommentItem = (item, index) => {
     const user = this.state.users.filter(useritem => useritem.id === item.user_id)[0];
-    console.log(user);
-    ///// time created
     const updatedAt = item.updated_at === item.created_at
     ? <p><span>created at</span> {new Date(item.created_at).toLocaleString('en-us')} </p>
     : <p><span>updated at</span> {new Date(item.updated_at).toLocaleString('en-us')} </p>
 
-    ///// Edit button
     const editSaveButton = item.editable
     ? <div className="comment-edit-button-div">
       <button className="comment-edit-button"
@@ -376,7 +370,6 @@ export default class Full extends Component {
         {this.renderFormContents()}
         {this.renderComments()}
         {
-          // Redirects user to the error page should the articles fail to load.
           (this.state.loading === 'error') ? <Redirect to="/error?source=articlepage" /> : ''
         }
       </div>

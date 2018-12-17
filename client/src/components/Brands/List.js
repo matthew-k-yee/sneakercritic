@@ -1,18 +1,14 @@
-// Importing Packages
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './Brands.css'
-
-// Importing Components
 import ListItem from './ListItem';
 
-// Brand List Component
 export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false, // Loading: false (not loading), true (loading), 'error' (error)
+      loading: false,
       data: []
     }
   }
@@ -22,7 +18,6 @@ export default class List extends Component {
     await this.setState({data});
   }
 
-  // Retrieves a list of articles from the database
   async getBrands() {
     this.setState({loading: true});
     return await axios.get(
@@ -63,7 +58,6 @@ export default class List extends Component {
       <div className='brands'>
         {this.renderBrands()}
         {
-          // Redirects user to the error page should the articles fail to load.
           (this.state.loading === 'error') ? <Redirect to="/error?source=brandlist" /> : ''
         }
       </div>

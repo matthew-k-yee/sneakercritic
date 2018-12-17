@@ -1,10 +1,8 @@
-// Importing Packages
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-// Importing Components
 import Header from './components/Header/';
 import Brands from './components/Brands/';
 import Articles from './components/Article/';
@@ -12,9 +10,8 @@ import Register from './components/Register/';
 import Profile from './components/Profile/';
 import Login from './components/Login/';
 
-// Setting variables
-// const SERVER_URL = 'https://sheltered-shore-90169.herokuapp.com';
-const SERVER_URL = 'http://localhost:3001'
+const SERVER_URL = 'https://sheltered-shore-90169.herokuapp.com';
+// const SERVER_URL = 'http://localhost:3001'
 
 
 class App extends Component {
@@ -30,7 +27,7 @@ class App extends Component {
         last_name: '',
         token: '',
         comments: [],
-        role_id: 3,// 3 = 'Guess'
+        role_id: 3,
 
       },
       articleData: {
@@ -83,12 +80,12 @@ class App extends Component {
           last_name: '',
           token: '',
           comments: [],
-          role_id: 3,// 3 = 'Guess'
+          role_id: 3,
         },
         loggedIn: false,
       } });
   }
-  // GET http://localhost:3001/users/login
+
   onLogin = async (userData) => {
     const currentUsers =  await axios.post(`${SERVER_URL}/users/login`, userData);
     this.setState(prevState => {
@@ -102,7 +99,6 @@ class App extends Component {
       } });
   }
 
-  // POST http://localhost:3001/users
   onRegister = async (userData) => {
     const newUsers =  await axios.post(`${SERVER_URL}/users`, userData);
     this.setState(prevState => {
@@ -117,7 +113,6 @@ class App extends Component {
     })
   }
 
-  // GET http://localhost:3001/users/profile
   getProfile = async () => {
     const URL = `${SERVER_URL}/users/profile`;
     const resp = await axios({
