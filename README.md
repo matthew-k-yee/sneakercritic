@@ -110,10 +110,10 @@ UsersRouter.post('/login', async (req, res) => {
 ```
 ## A guide to getting started contributing to the project
 ###### ERD
-Inline-style:
 ![alt text](https://raw.githubusercontent.com/matthew-k-yee/sneakercritic/master/ERD%20-%20Group%20project%203.jpeg)
 
 ###### Wireframe
+![alt text](https://raw.githubusercontent.com/matthew-k-yee/sneakercritic/master/Wireframe.jpg)
 ###### Project Board
 [Project Board](https://github.com/matthew-k-yee/sneakercritic/projects)
 
