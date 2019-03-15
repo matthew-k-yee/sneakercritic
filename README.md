@@ -13,7 +13,7 @@ A user can register and login for authorization. When logged in, a user can go t
 
 ## URL Section
 * [Github repo link](https://github.com/matthew-k-yee/sneakercritic)
-- [Deployed app link](pleasant-slip.surge.sh)
+* [Deployed app link](pleasant-slip.surge.sh)
 
 ## Inspired By Sites Like
 - [OpenCritic](https://opencritic.com)
