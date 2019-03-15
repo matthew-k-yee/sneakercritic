@@ -12,6 +12,7 @@ When a single article is displayed on the screen, a user can read the text insid
 A user can register and login for authorization. When logged in, a user can go to their profile and see there personal information - first name, last name, email, and comments they posted to articles they interacted with.
 
 ## URL Section
+* [Deployed](http://pleasant-slip.surge.sh)
 * [Github repo link](https://github.com/matthew-k-yee/sneakercritic)
 
 ## Inspired By Sites Like
